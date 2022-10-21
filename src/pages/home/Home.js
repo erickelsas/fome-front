@@ -16,10 +16,8 @@ import FooterHome from '../../components/FooterHome';
 
 const Home = () => {
   const url = 'https://murmuring-forest-23300.herokuapp.com/http://fomeback1-env.eba-fm3wqqc8.sa-east-1.elasticbeanstalk.com/product/find-all';
-  const { data: products, error, httpConfig } = useFetch(url)
+  const { data: products, loading } = useFetch(url)
   const [filter, setFilter] = useState('todos');
-
-
 
   return (
     <div className='home'>
@@ -35,7 +33,11 @@ const Home = () => {
           <h1 className='d-flex justify-content-center align-items-center text-white cardapio-title'>Cardápio</h1>
           <Filter filter={filter} setFilter={setFilter}/>
             <Row>
-            {products && products.map((product) => {if (filter === 'all'){
+            {loading && 
+              (<div className='d-flex w-100 justify-content-center align-items-center'>
+                <div className='loading'></div>
+              </div>)}
+            {!loading && products.map((product) => {if (filter === 'all'){
               return (
                 <Col className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
                             <ProductCard key={product.id}
