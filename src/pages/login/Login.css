@@ -5,13 +5,14 @@
 }
 
 .login-right{
+    background-color: #000;
     position: relative;
     z-index: 1;
 }
 
 .login-left{
     z-index: 2;
-    box-shadow: 3px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.3));
 }
 
 .bg-login{
@@ -38,6 +39,7 @@
     border-radius: 8px;
     padding: 0.75rem 0rem;
     transition: 0.3s all ease-in-out;
+    filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.3));
 }
 
 .login-content input[type='submit']:hover{
@@ -47,6 +49,7 @@
 
 .login-content .user-camp{
     border-radius: 8px;
+    filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.3));
 }
 
 .login-content input[type='text'],
@@ -56,6 +59,7 @@
     transition: 0.3s all ease-in-out;
     padding: 0px 4px;
     font-size: 1.1rem;
+    border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .login-content input[type='text']:hover,
@@ -76,6 +80,7 @@
     height: 5vh;
     transition: 0.3s all ease-in-out;
     border-radius: 0px 8px 8px 0px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .pass-form .pass-reveal:hover{
@@ -85,6 +90,10 @@
 
 .pass-form .pass-camp{
     border-radius: 8px 0px 0px 8px;
+}
+
+.pass-form{
+    filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.3));
 }
 
 .login-content form{

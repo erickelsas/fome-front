@@ -3,9 +3,11 @@ import Row from 'react-bootstrap/Row';
 import NavBarHome from '../../components/NavBarHome';
 import Container from 'react-bootstrap/Container';
 import bgLogin  from '../../assets/bg-login.png';
+import Form from '../../components/Form';
 import { Eye, EyeSlash} from 'react-bootstrap-icons';
 
 import './Login.css'
+
 
 const Login = () => {
   const [ passType, setPassType ] = useState('password');
@@ -35,12 +37,7 @@ const Login = () => {
             <div className='login-content d-flex justify-content-center align-items-center'>
               <form className='d-flex flex-column justify-content-center' 
                     onSubmit={handleSubmit}>
-                <label htmlFor="user">Mesa/Usuário</label>
-                <input type="text" 
-                       name='user' 
-                       className='user-camp' 
-                       value={user} 
-                       onChange={(e) => setUser(e.target.value)}/>
+                <Form name='user' value={user} setAttr={setUser}>Mesa/Usuário</Form>
 
                 <label htmlFor="password">Senha</label>
                 <div className='pass-form d-flex align-items-center w-100'>
