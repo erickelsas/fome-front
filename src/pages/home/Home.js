@@ -15,7 +15,7 @@ import Filter from '../../components/Filter';
 import FooterHome from '../../components/FooterHome';
 
 const Home = () => {
-  const url = 'http://fomeback1-env.eba-fm3wqqc8.sa-east-1.elasticbeanstalk.com/product/find-all';
+  const url = 'https://fomeback1-env.eba-fm3wqqc8.sa-east-1.elasticbeanstalk.com/product/find-all';
   const { data: products, error, httpConfig } = useFetch(url)
   const [filter, setFilter] = useState('todos');
 
