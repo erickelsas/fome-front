@@ -4,7 +4,7 @@ import { useFetch } from '../../hooks/useFetch';
 import './Home.css';
 
 import wave from '../../assets/wave.svg';
-import xrataoHome from '../../assets/x-ratao-home-page.svg'
+import xrataoHome from '../../assets/x-ratao.png'
 
 import Container from 'react-bootstrap/esm/Container';
 import NavBarHome from '../../components/NavBarHome';
