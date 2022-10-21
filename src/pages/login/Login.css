@@ -1,0 +1,113 @@
+.login-container{
+    height: 100vh;
+
+    overflow-x: hidden;
+}
+
+.login-right{
+    position: relative;
+    z-index: 1;
+}
+
+.login-left{
+    z-index: 2;
+    box-shadow: 3px 0px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.bg-login{
+    position: absolute;
+    height: 100vh;
+    top: 0;
+    left: -30%;
+    z-index: 1;
+    filter: brightness(30%)
+}
+
+.login-content{
+    background-color: #E32929;
+    height: 90vh;
+    z-index: 2;
+}
+
+.login-content input[type='submit']{
+    margin-top: 2vh;
+    border: none;
+    background-color: #FFB80E;
+    color: #000;
+    font-size: 1.25rem;
+    border-radius: 8px;
+    padding: 0.75rem 0rem;
+    transition: 0.3s all ease-in-out;
+}
+
+.login-content input[type='submit']:hover{
+    transform: scale(1.05);
+    filter: brightness(90%);
+}
+
+.login-content .user-camp{
+    border-radius: 8px;
+}
+
+.login-content input[type='text'],
+.login-content input[type='password']{
+    height: 5vh;
+    border: none;
+    transition: 0.3s all ease-in-out;
+    padding: 0px 4px;
+    font-size: 1.1rem;
+}
+
+.login-content input[type='text']:hover,
+.login-content input[type='password']:hover{
+    border: none;
+    cursor:text;
+    filter: brightness(80%);
+}
+
+.login-content label{
+    color: white;
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+.pass-form .pass-reveal{
+    background-color: #f2f3f4;
+    height: 5vh;
+    transition: 0.3s all ease-in-out;
+    border-radius: 0px 8px 8px 0px;
+}
+
+.pass-form .pass-reveal:hover{
+    cursor: pointer;
+    filter: brightness(80%);
+}
+
+.pass-form .pass-camp{
+    border-radius: 8px 0px 0px 8px;
+}
+
+.login-content form{
+    margin-bottom: 10vh;
+    width: 60%;
+}
+
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) { 
+    .login-content form{
+        width: 45%;
+    }
+}
+
+@media (min-width: 992px) { 
+}
+
+@media (min-width: 1200px) { 
+    .login-content form{
+        margin-bottom: 10vh;
+        width: 30%;
+    }
+}
