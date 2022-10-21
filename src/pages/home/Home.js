@@ -15,7 +15,7 @@ import Filter from '../../components/Filter';
 import FooterHome from '../../components/FooterHome';
 
 const Home = () => {
-  const url = 'fome.ckd5mspy1a9b.sa-east-1.rds.amazonaws.com/product/find-all';
+  const url = 'http://fomeback1-env.eba-fm3wqqc8.sa-east-1.elasticbeanstalk.com/product/find-all';
   const { data: products, error, httpConfig } = useFetch(url)
   const [filter, setFilter] = useState('todos');
 
@@ -23,7 +23,7 @@ const Home = () => {
 
   return (
     <div className='home'>
-        <NavBarHome />
+        <NavBarHome/>
         <div className='wave-container'>
           <div className='d-flex flex-column align-items-center justify-content-center mt-5'>
             <h2 className='slogan text-center w-75'>Ferramenta Online para Manutenção de E-cardápios</h2>

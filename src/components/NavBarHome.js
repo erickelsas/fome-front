@@ -17,7 +17,11 @@ const NavBarHome = () => {
   return (
     <Navbar className='bg-nav'>
         <Container>
-            <NavLink to='/'><Navbar.Brand><img src={logo} alt="FOME logo" className='logo'/></Navbar.Brand></NavLink>
+            <NavLink to='/'>
+              <Navbar.Brand className='d-flex align-items-center justify-content-center'>
+                <img src={logo} alt="FOME logo" className='logo'/>
+              </Navbar.Brand>
+            </NavLink>
             <div className='menu-options'>
                 <NavLink to='/' end>Cardápio</NavLink>
                 |
