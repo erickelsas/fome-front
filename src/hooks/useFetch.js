@@ -42,8 +42,6 @@ export const useFetch = (url) => {
     }
   };
 
-  var resClone = '';
-
   useEffect(() => {
     const fetchData = async () => {
       // 6 - estado de loading
@@ -53,7 +51,7 @@ export const useFetch = (url) => {
       // 8 - tratando erros
       try {
         const res = await fetch(url);
-        resClone = res;
+        
         const json = await res.json();
 
         setData(json);
