@@ -50,10 +50,16 @@ const Login = () => {
                   <div className='pass-reveal col-2 d-flex justify-content-center align-items-center' 
                        onClick={handleClickPass}>
 
-                    {passType === 'password' ? 
-                      (<Eye color='red' size={24}/>
+                    {passType === 'password' ? (
+                      <div>
+                        <span className='visually-hidden'>Ver senha:</span>
+                        <Eye color='red' size={24} alt='Ver senha'/>
+                      </div>
                     ):(
-                      <EyeSlash color='red' size={24} />
+                      <div>
+                        <span className='visually-hidden'>Deixar de ver senha:</span>
+                        <EyeSlash color='red' size={24}/>
+                      </div>
                     )}
 
                   </div>

@@ -10,7 +10,7 @@
 }
 
 .form-component:hover{
-    border: none;
+    border: none; 
     cursor:text;
     filter: brightness(80%);
 }

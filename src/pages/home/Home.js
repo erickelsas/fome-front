@@ -16,7 +16,7 @@ import FooterHome from '../../components/FooterHome';
 
 const Home = () => {
   const url = 'https://murmuring-forest-23300.herokuapp.com/http://fomeback1-env.eba-fm3wqqc8.sa-east-1.elasticbeanstalk.com/product/find-all';
-  const { data: products, loading } = useFetch(url)
+  const { data: products, loading, error } = useFetch(url)
   const [filter, setFilter] = useState('todos');
 
   return (
@@ -37,6 +37,7 @@ const Home = () => {
               (<div className='d-flex w-100 justify-content-center align-items-center'>
                 <div className='loading'></div>
               </div>)}
+            {(!loading && products.length === 0 && (<p className='w-100 text-center text-light'>Houve um problema! Os produtos não podem ser carregados, tente novamente!</p>)) || error}
             {!loading && products.map((product) => {if (filter === 'all'){
               return (
                 <Col className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
