@@ -4,6 +4,7 @@ import bgLogin  from '../../assets/bg-login.png';
 import InputText from '../../components/InputText';
 import { Eye, EyeSlash} from 'react-bootstrap-icons';
 import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from 'react-router-dom';
 
 import './Login.css'
 
@@ -15,6 +16,8 @@ const Login = () => {
   const [ showModal, setShowModal ] = useState(false);
   const [ name, setName ] = useState('');
   const [ cpf, setCpf] = useState('');
+
+  const navigate = useNavigate();
  
   const handleClickPass = () => {
     if(passType === 'password'){
@@ -69,6 +72,7 @@ const Login = () => {
       setCpf('');
     
       handleClose();
+      navigate('/');
     }
   }
 
@@ -123,7 +127,7 @@ const Login = () => {
               </div>
             </div>
             <div className='col-0 col-lg-6 login-right'>
-              <img src={bgLogin} alt='' className='bg-login'></img>
+              <img src={bgLogin} alt='Fundo - Hamburgueres' className='bg-login'></img>
             </div>
           </div>
       </div>

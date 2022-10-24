@@ -1,5 +1,48 @@
 .home{
     background-color: #E32929;
+    position: relative;
+}
+
+.home .order{
+    z-index: 1;
+    position: fixed;
+    bottom: 0;
+    right: -85.1vw;
+    width: 100vw;
+
+    filter: drop-shadow(0px 0px 3px rgba(0,0,0,0.3));
+
+    transition: all 0.4s ease-in-out;
+}
+
+.home .order.open{
+    right: 0vw;
+}
+
+.home .order .car{
+    height: 80vh;
+    width: 85vw;
+    background-color: #982121;
+    border-radius: 1rem 1rem 0 1rem;
+}
+
+.home .order .car-container{
+    width: 100%;
+    height: 100%;
+
+}
+
+.home .icon{
+    height: 7.5vh;
+    background-color: #982121;
+    width: 15vw;
+    margin-top: 5vh;
+    border: none;
+    border-radius: 16px 0px 0px 16px;
+}
+
+.home .bg-nav{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .home .wave-container{
@@ -75,6 +118,20 @@
 @media (min-width: 992px) { 
     .home .lanche{
         transform: scale(1);
+    }
+
+    .home .order{
+        right: -25vw;
+        width: 29vw;
+    }
+    
+    .home .order .car{
+        height: 70vh;
+        width: 25vw;
+    }
+    
+    .home .icon{
+        width: 4vw;
     }
 }
 

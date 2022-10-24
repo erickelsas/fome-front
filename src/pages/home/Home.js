@@ -6,6 +6,8 @@ import './Home.css';
 import wave from '../../assets/wave.svg';
 import xrataoHome from '../../assets/x-ratao.png'
 
+import { Cart } from 'react-bootstrap-icons';
+
 import Container from 'react-bootstrap/esm/Container';
 import NavBarHome from '../../components/NavBarHome';
 import ProductCard from '../../components/ProductCard';
@@ -17,7 +19,16 @@ import FooterHome from '../../components/FooterHome';
 const Home = () => {
   const url = 'https://murmuring-forest-23300.herokuapp.com/http://fomeback1-env.eba-fm3wqqc8.sa-east-1.elasticbeanstalk.com/product/find-all';
   const { data: products, loading, error } = useFetch(url)
-  const [filter, setFilter] = useState('todos');
+  const [ filter, setFilter ] = useState('todos');
+  const [ openCar, setOpenCar ] = useState(false)
+
+  const handleOpenCar = () => {
+    if(openCar === true) {
+      setOpenCar(false);
+    } else {
+      setOpenCar(true);
+    }
+  }
 
   return (
     <div className='home'>
@@ -29,6 +40,21 @@ const Home = () => {
           </div>
           <img src={wave} alt="Onda de fundo" className='wave'/>
         </div>
+
+        <aside className={openCar ? 'order d-flex flex-row-reverse justify-content-end open' : 'order d-flex flex-row-reverse justify-content-end'}>
+          <div className='car'>
+            <h3 className='text-center text-light mt-5'>Pedidos</h3>
+            <div className="car-container d-flex flex-column justify-content-center align-items-center">
+              <div className="itens">
+                
+              </div>
+            </div>
+          </div>
+
+          <button className='icon d-flex justify-content-start align-items-center p-2' onClick={handleOpenCar}>
+            <Cart color='#f2f3f4' size={36}/>
+          </button>
+        </aside>    
         <Container id='container-teste'>
           <h1 className='d-flex justify-content-center align-items-center text-white cardapio-title'>Cardápio</h1>
           <Filter filter={filter} setFilter={setFilter}/>

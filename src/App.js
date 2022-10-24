@@ -11,9 +11,12 @@ function App() {
     <div className="App">
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
+          {/* Rotas */}
           <Route path='/' element={<Home />}/>
           <Route path='/login' element={<Login />}/>
+          <Route path='/privacy' element={<Privacy />}/>
           
+          {/* 404 */}
           <Route path='*' element={<Navigate to='/' />}/>
         </Routes>
       </BrowserRouter>
