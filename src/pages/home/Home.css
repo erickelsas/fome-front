@@ -66,6 +66,10 @@
     .home .lanche{
         transform: scale(0.85);
     }
+
+    .home .wave{
+        bottom: -10%;
+    }
 }
 
 @media (min-width: 992px) { 

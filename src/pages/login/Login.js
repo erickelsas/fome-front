@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import Row from 'react-bootstrap/Row';
 import NavBarHome from '../../components/NavBarHome';
-import Container from 'react-bootstrap/Container';
 import bgLogin  from '../../assets/bg-login.png';
-import Form from '../../components/Form';
+import InputText from '../../components/InputText';
 import { Eye, EyeSlash} from 'react-bootstrap-icons';
+import Modal from 'react-bootstrap/Modal';
 
 import './Login.css'
 
@@ -12,8 +11,11 @@ import './Login.css'
 const Login = () => {
   const [ passType, setPassType ] = useState('password');
   const [ user, setUser] = useState('');
-  const [ password, setPassword ] = useState('')
-
+  const [ password, setPassword ] = useState('');
+  const [ showModal, setShowModal ] = useState(false);
+  const [ name, setName ] = useState('');
+  const [ cpf, setCpf] = useState('');
+ 
   const handleClickPass = () => {
     if(passType === 'password'){
       setPassType('text');
@@ -22,58 +24,109 @@ const Login = () => {
     }
   }
 
+  const userCondition = (user) => { return user.length !== 0};
+  const passCondition = (password) => { return password.length >= 6};
+
+  const cpfCondition = (cpf) => {
+    let pDigVerificador = ((cpf.charAt(0) * 10 + cpf.charAt(1) * 9 + cpf.charAt(2) * 8 + cpf.charAt(3) * 7 + cpf.charAt(4) * 6 + cpf.charAt(5) * 5 + cpf.charAt(6) * 4 + cpf.charAt(7) * 3 + cpf.charAt(8) * 2)* 10) % 11;
+
+    let sDigVerificador = ((cpf.charAt(0) * 11 + cpf.charAt(1) * 10 + cpf.charAt(2) * 9 + cpf.charAt(3) * 8 + cpf.charAt(4) * 7 + cpf.charAt(5) * 6 + cpf.charAt(6) * 5 + cpf.charAt(7) * 4 + cpf.charAt(8) * 3 + cpf.charAt(9) * 2)* 10) % 11;
+
+    if(pDigVerificador === 10){
+      pDigVerificador = 0;
+    }
+
+    if (sDigVerificador === 10){
+      sDigVerificador = 0;
+    }
+
+    if(pDigVerificador === parseInt(cpf.charAt(9)) && sDigVerificador === parseInt(cpf.charAt(10))){
+      return true;
+    }
+
+    return false;
+  }
+
+  const handleOpen = () => {
+    if(userCondition(user) && passCondition(password)){
+      setShowModal(true);
+    }
+  }
+
+  const handleClose = () => {
+    if(cpfCondition(cpf) && userCondition(name)){
+      setShowModal(false);
+   }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setUser('');
-    setPassword('');
+    if(cpfCondition(cpf) && userCondition(name)){
+      setUser('');
+      setPassword('');
+      setName('');
+      setCpf('');
+    
+      handleClose();
+    }
   }
 
   return (
     <div className='login-container'>
-        <div className='d-flex'>
-          <div className='col-12 col-lg-6 login-left'>
-            <NavBarHome />
-            <div className='login-content d-flex justify-content-center align-items-center'>
-              <form className='d-flex flex-column justify-content-center' 
-                    onSubmit={handleSubmit}>
-                <Form name='user' value={user} setAttr={setUser}>Mesa/Usuário</Form>
+          <div className='d-flex'>
+            <div className='col-12 col-lg-6 login-left'>
+              <NavBarHome />
+              <div className='login-content d-flex justify-content-center align-items-center'>
+                <form className='d-flex flex-column justify-content-center' onSubmit={(e) => {e.preventDefault(); handleOpen();}}>
+                  <InputText name='user' value={user} setAttr={setUser} condition={userCondition}>Mesa/Usuário</InputText>
 
-                <label htmlFor="password">Senha</label>
-                <div className='pass-form d-flex align-items-center w-100'>
-                  <input type={passType} 
-                         name='password' 
-                         className='pass-camp col-10' 
-                         value={password} 
-                         onChange={(e) => setPassword(e.target.value)}/>
+                  <label htmlFor="password">Senha</label>
+                  <div className='pass-form d-flex align-items-center w-100'>
+                    <input type={passType} 
+                          name='password' 
+                          className={passCondition(password) ? 'pass-camp col-10 valid' : 'pass-camp col-10 invalid'}
+                          value={password} 
+                          onChange={(e) => setPassword(e.target.value)}/>
 
-                  <div className='pass-reveal col-2 d-flex justify-content-center align-items-center' 
-                       onClick={handleClickPass}>
+                    <div className='pass-reveal col-2 d-flex justify-content-center align-items-center' 
+                        onClick={handleClickPass}>
 
-                    {passType === 'password' ? (
-                      <div>
-                        <span className='visually-hidden'>Ver senha:</span>
-                        <Eye color='red' size={24} alt='Ver senha'/>
-                      </div>
-                    ):(
-                      <div>
-                        <span className='visually-hidden'>Deixar de ver senha:</span>
-                        <EyeSlash color='red' size={24}/>
-                      </div>
-                    )}
+                      {passType === 'password' ? (
+                        <div>
+                          <span className='visually-hidden'>Ver senha:</span>
+                          <Eye color='#E32929' size={24} alt='Ver senha'/>
+                        </div>
+                      ):(
+                        <div>
+                          <span className='visually-hidden'>Deixar de ver senha:</span>
+                          <EyeSlash color='#E32929' size={24}/>
+                        </div>
+                      )}
+
+                    </div>
 
                   </div>
+                  <input type="submit" value="Entrar" />
+                </form>
 
-                </div>
-                <input type="submit" value="Entrar" />
-              </form>
+                <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+                  <div className='modal-container'>
+                    <form className='d-flex justify-content-center align-items-center flex-column'
+                          onSubmit={handleSubmit}>
+                        <InputText name='name' value={name} setAttr={setName} condition={userCondition}>Nome</InputText>
+                        <InputText name='cpf' value={cpf} setAttr={setCpf} condition={cpfCondition}>CPF</InputText>
+                        <input type="submit" className='col-5' value="Entrar" onClick={handleClose}/>
+                    </form>
+                  </div>
+                </Modal>
+              </div>
+            </div>
+            <div className='col-0 col-lg-6 login-right'>
+              <img src={bgLogin} alt='' className='bg-login'></img>
             </div>
           </div>
-          <div className='col-0 col-lg-6 login-right'>
-            <img src={bgLogin} alt='' className='bg-login'></img>
-          </div>
-        </div>
-    </div>
+      </div>
   )
 }
 
