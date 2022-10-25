@@ -15,6 +15,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Filter from '../../components/Filter';
 import FooterHome from '../../components/FooterHome';
+import CarCard from '../../components/CarCard';
 
 const Home = () => {
   const url = 'https://murmuring-forest-23300.herokuapp.com/http://fomeback1-env.eba-fm3wqqc8.sa-east-1.elasticbeanstalk.com/product/find-all';
@@ -42,12 +43,22 @@ const Home = () => {
         </div>
 
         <aside className={openCar ? 'order d-flex flex-row-reverse justify-content-end open' : 'order d-flex flex-row-reverse justify-content-end'}>
-          <div className='car'>
-            <h3 className='text-center text-light mt-5'>Pedidos</h3>
-            <div className="car-container d-flex flex-column justify-content-center align-items-center">
-              <div className="itens">
-                
+          <div className='car d-flex flex-column justify-content-between align-items-center'>
+            <h3 className='text-center text-light mt-3 mb-3'>Pedidos</h3>
+            <div className="car-container d-flex flex-column justify-content-start align-items-center">
+              <div className='itens'>
+                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
+                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
+                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
+                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
+                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
+                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
+                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
+                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
               </div>
+            </div>
+            <div className='d-flex justify-content-center align-items-center col-10'>
+              <button className='pedir mb-3'>Realizar pedido!</button>
             </div>
           </div>
 

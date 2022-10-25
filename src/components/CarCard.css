@@ -1,0 +1,49 @@
+.car-card img{
+    transform: scale(0.15);
+}
+
+.car-card .img-bg{
+    background-color: #D9D9D9;
+    max-height: 18vh;
+    height: 100%;
+    border-radius: 16px 0px 0px 16px;
+}
+
+.car-card{
+    width: 100%;
+    max-height: 18vh;
+    margin: auto;
+    background-color: #f2f3f4;
+    border-radius: 16px;
+    margin-bottom: 1rem;
+
+    filter: drop-shadow(0px 0px 3px rgba(0,0,0,0.3));
+}
+
+.car-card h3{
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.car-card h4{
+    font-size: 1.15rem;
+    margin: 0;
+}
+
+.car-card p{
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.car-card h3,
+.car-card h4,
+.car-card p{
+    color: #e32929;
+}
+
+
+.car-card button{
+    height: 100%;
+    border: none;
+    border-radius: 16px;
+}

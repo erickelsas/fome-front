@@ -14,7 +14,6 @@ function App() {
           {/* Rotas */}
           <Route path='/' element={<Home />}/>
           <Route path='/login' element={<Login />}/>
-          <Route path='/privacy' element={<Privacy />}/>
           
           {/* 404 */}
           <Route path='*' element={<Navigate to='/' />}/>
