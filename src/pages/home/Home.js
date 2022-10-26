@@ -115,7 +115,7 @@ const Home = () => {
                                       photo={product.photo}
                                       name={product.name}
                                       price={product.price}
-                                      description={product.descricao}
+                                      description={product.description}
                                       ingredients={product.ingredients} />
                 </Col>
               )
