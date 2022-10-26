@@ -61,7 +61,7 @@ const Home = () => {
             </div>
             <div className='d-flex justify-content-center align-items-center col-10'>
               <div className='col-4'>
-                <h5 className='text-white'>Total: {total}</h5>
+                <h5 className='text-white'>Total: {total.toFixed(2)}</h5>
               </div>
               <button className='pedir mb-3'>Efetuar pedido!</button>
             </div>
