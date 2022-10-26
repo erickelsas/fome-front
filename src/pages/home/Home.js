@@ -50,18 +50,18 @@ const Home = () => {
             <div className="car-container d-flex flex-column justify-content-start align-items-center">
               <div className='itens'>
                 {order && order.map((product) => (
-                <CarCard key={product.num}
-                         id={product.id}
-                         num={product.num}
-                         photo={product.photo} 
-                         name={product.name} 
-                         price={product.price} 
-                         description={product.description}/>
+                  <CarCard key={product.num}
+                           id={product.id}
+                           num={product.num}
+                           photo={product.photo} 
+                           name={product.name} 
+                           price={product.price} 
+                           description={product.description}/>
                 ))}
               </div>
             </div>
             <div className='d-flex justify-content-center align-items-center col-10'>
-              <div className='col-8'>
+              <div className='col-6'>
                 <h5 className='text-white'>Total: R$ {Number.isInteger(total) ? total : total.toFixed(2)}</h5>
               </div>
               <button className='pedir mb-3'>Efetuar pedido!</button>
@@ -76,17 +76,6 @@ const Home = () => {
           <h1 className='d-flex justify-content-center align-items-center text-white cardapio-title'>Cardápio</h1>
           <Filter filter={filter} setFilter={setFilter}/>
             <Row>
-
-              <Col className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
-                <ProductCard key={1}
-                         id = {1}
-                         photo={''}
-                         name={'X-Ratão'}
-                         price={19.99}
-                         description={'Um lindíssimo lanche super recheado com carne de rato e muito amor!'}
-                         ingredients={'Pão, hamburguer, salada, bacon, cheedar'} />
-              </Col>
-
             {loading && 
               (<div className='d-flex w-100 justify-content-center align-items-center'>
                 <div className='loading'></div>
@@ -96,24 +85,24 @@ const Home = () => {
               return (
                 <Col className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
                             <ProductCard key={product.id}
-                         id = {product.id}
-                         photo={product.photo}
-                         name={product.name}
-                         price={product.price}
-                         description={product.descricao}
-                         ingredients={product.ingredients} />
+                                         id = {product.id}
+                                         photo={product.photo}
+                                         name={product.name}
+                                         price={product.price}
+                                         description={product.descricao}
+                                         ingredients={product.ingredients} />
                 </Col>
             )
             } else if (filter === product.category) {
               return (
               <Col className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
                          <ProductCard key={product.id}
-                         id = {product.id}
-                         photo={product.photo}
-                         name={product.name}
-                         price={product.price}
-                         description={product.descricao}
-                         ingredients={product.ingredients} />
+                                      id = {product.id}
+                                      photo={product.photo}
+                                      name={product.name}
+                                      price={product.price}
+                                      description={product.descricao}
+                                      ingredients={product.ingredients} />
                 </Col>
               )
             }

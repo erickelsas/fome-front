@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import NavBarHome from '../../components/NavBarHome';
 import bgLogin  from '../../assets/bg-login.png';
 import InputText from '../../components/InputText';
 import { Eye, EyeSlash} from 'react-bootstrap-icons';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
+import { RoleContext } from '../../context/RoleContext';
 
 import './Login.css'
+
 
 
 const Login = () => {
@@ -16,6 +18,8 @@ const Login = () => {
   const [ showModal, setShowModal ] = useState(false);
   const [ name, setName ] = useState('');
   const [ cpf, setCpf] = useState('');
+
+  const { setRole, role } = useContext(RoleContext);
 
   const navigate = useNavigate();
  
@@ -66,6 +70,12 @@ const Login = () => {
     e.preventDefault();
 
     if(cpfCondition(cpf) && userCondition(name)){
+      if(cpf === '52533776890') {
+        setRole('admin');
+      } else {
+        setRole('client');
+      }
+
       setUser('');
       setPassword('');
       setName('');
@@ -120,7 +130,7 @@ const Login = () => {
                           onSubmit={handleSubmit}>
                         <InputText name='name' value={name} setAttr={setName} condition={userCondition}>Nome</InputText>
                         <InputText name='cpf' value={cpf} setAttr={setCpf} condition={cpfCondition}>CPF</InputText>
-                        <input type="submit" className='col-5' value="Entrar" onClick={handleClose}/>
+                        <input type="submit" className='col-5' value="Entrar"/>
                     </form>
                   </div>
                 </Modal>
