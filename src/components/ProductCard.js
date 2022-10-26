@@ -1,7 +1,15 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { OrderContext } from '../context/OrderContext'
 import './ProductCard.css'
 
-const ProductCard = ({photo, name, price, description, ingredients}) => {
+const ProductCard = ({id, photo, name, price, description, ingredients}) => {
+    const {order, setOrder, total, setTotal} = useContext(OrderContext);
+
+    const handleClick = () => {
+        setOrder(prevOrder => [...prevOrder, { 'num': order.length, id, photo, name, price, description, ingredients }]);
+        setTotal(total + price);
+    }
+
   return (
     <div className='product-card'>
         <div className='d-flex justify-content-center align-items-center card-top'>
@@ -15,7 +23,7 @@ const ProductCard = ({photo, name, price, description, ingredients}) => {
             <p className='card-desc'>{description}</p>
             <div className='card-ing-car'>
                 <p>{ingredients}</p>
-                <button>Carrinho</button>
+                <button onClick={handleClick}>Carrinho</button>
             </div>
             <button className='col-12 btn-order'>Efetuar pedido</button>
         </div>

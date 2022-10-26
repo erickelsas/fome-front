@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useFetch } from '../../hooks/useFetch';
 
 import './Home.css';
@@ -16,12 +16,14 @@ import Row from 'react-bootstrap/Row';
 import Filter from '../../components/Filter';
 import FooterHome from '../../components/FooterHome';
 import CarCard from '../../components/CarCard';
+import { OrderContext } from '../../context/OrderContext';
 
 const Home = () => {
   const url = 'https://murmuring-forest-23300.herokuapp.com/http://fomeback1-env.eba-fm3wqqc8.sa-east-1.elasticbeanstalk.com/product/find-all';
   const { data: products, loading, error } = useFetch(url)
   const [ filter, setFilter ] = useState('todos');
-  const [ openCar, setOpenCar ] = useState(false)
+  const [ openCar, setOpenCar ] = useState(false);
+  const { order, total } = useContext(OrderContext);
 
   const handleOpenCar = () => {
     if(openCar === true) {
@@ -47,18 +49,21 @@ const Home = () => {
             <h3 className='text-center text-light mt-3 mb-3'>Pedidos</h3>
             <div className="car-container d-flex flex-column justify-content-start align-items-center">
               <div className='itens'>
-                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
-                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
-                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
-                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
-                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
-                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
-                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
-                <CarCard photo={xrataoHome} name='X-Ratão' price={19.99} description='Um lindíssimo lanche super recheado com carne de rato e muito amor!'/>
+                {order && order.map((product) => (
+                <CarCard key={product.num}
+                         id={product.id}
+                         photo={product.photo} 
+                         name={product.name} 
+                         price={product.price} 
+                         description={product.description}/>
+                ))}
               </div>
             </div>
             <div className='d-flex justify-content-center align-items-center col-10'>
-              <button className='pedir mb-3'>Realizar pedido!</button>
+              <div className='col-4'>
+                <h5 className='text-white'>Total: {total}</h5>
+              </div>
+              <button className='pedir mb-3'>Efetuar pedido!</button>
             </div>
           </div>
 
@@ -70,6 +75,17 @@ const Home = () => {
           <h1 className='d-flex justify-content-center align-items-center text-white cardapio-title'>Cardápio</h1>
           <Filter filter={filter} setFilter={setFilter}/>
             <Row>
+
+              <Col className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
+                <ProductCard key={1}
+                         id = {1}
+                         photo={''}
+                         name={'X-Ratão'}
+                         price={19.99}
+                         description={'Um lindíssimo lanche super recheado com carne de rato e muito amor!'}
+                         ingredients={'Pão, hamburguer, salada, bacon, cheedar'} />
+              </Col>
+
             {loading && 
               (<div className='d-flex w-100 justify-content-center align-items-center'>
                 <div className='loading'></div>
@@ -79,6 +95,7 @@ const Home = () => {
               return (
                 <Col className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
                             <ProductCard key={product.id}
+                         id = {product.id}
                          photo={product.photo}
                          name={product.name}
                          price={product.price}
@@ -90,6 +107,7 @@ const Home = () => {
               return (
               <Col className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
                          <ProductCard key={product.id}
+                         id = {product.id}
                          photo={product.photo}
                          name={product.name}
                          price={product.price}
