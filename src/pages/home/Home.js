@@ -52,6 +52,7 @@ const Home = () => {
                 {order && order.map((product) => (
                 <CarCard key={product.num}
                          id={product.id}
+                         num={product.num}
                          photo={product.photo} 
                          name={product.name} 
                          price={product.price} 
@@ -60,8 +61,8 @@ const Home = () => {
               </div>
             </div>
             <div className='d-flex justify-content-center align-items-center col-10'>
-              <div className='col-4'>
-                <h5 className='text-white'>Total: {total.toFixed(2)}</h5>
+              <div className='col-8'>
+                <h5 className='text-white'>Total: R$ {Number.isInteger(total) ? total : total.toFixed(2)}</h5>
               </div>
               <button className='pedir mb-3'>Efetuar pedido!</button>
             </div>
