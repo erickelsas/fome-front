@@ -17,13 +17,17 @@ import Filter from '../../components/Filter';
 import FooterHome from '../../components/FooterHome';
 import CarCard from '../../components/CarCard';
 import { OrderContext } from '../../context/OrderContext';
+import { RoleContext } from '../../context/RoleContext';
 
 const Home = () => {
   const url = 'https://murmuring-forest-23300.herokuapp.com/http://fomeback1-env.eba-fm3wqqc8.sa-east-1.elasticbeanstalk.com/product/find-all';
   const { data: products, loading, error } = useFetch(url)
   const [ filter, setFilter ] = useState('todos');
   const [ openCar, setOpenCar ] = useState(false);
-  const { order, total } = useContext(OrderContext);
+  const { order, total, setOrder, setTotal } = useContext(OrderContext);
+  const { role } = useContext(RoleContext);
+
+  console.log(products);
 
   const handleOpenCar = () => {
     if(openCar === true) {
@@ -32,6 +36,16 @@ const Home = () => {
       setOpenCar(true);
     }
   }
+
+  const realizarPedido = () => {
+    if(role !== 'visitant'){
+        setOrder([]);
+        setTotal(0);
+    } else {
+        alert('Você precisa estar logado!');
+    }
+
+}
 
   return (
     <div className='home'>
@@ -64,7 +78,7 @@ const Home = () => {
               <div className='col-6'>
                 <h5 className='text-white'>Total: R$ {Number.isInteger(total) ? total : total.toFixed(2)}</h5>
               </div>
-              <button className='pedir mb-3'>Efetuar pedido!</button>
+              <button className='pedir mb-3' onClick={realizarPedido}>Efetuar pedido!</button>
             </div>
           </div>
 
@@ -81,7 +95,7 @@ const Home = () => {
                 <div className='loading'></div>
               </div>)}
             {(!loading && products.length === 0 && (<p className='w-100 text-center text-light'>Houve um problema! Os produtos não podem ser carregados, tente novamente!</p>)) || error}
-            {!loading && products.map((product) => {if (filter === 'all'){
+            {!loading && products.map((product) => {if (filter === 'todos'){
               return (
                 <Col className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
                             <ProductCard key={product.id}
@@ -89,11 +103,11 @@ const Home = () => {
                                          photo={product.photo}
                                          name={product.name}
                                          price={product.price}
-                                         description={product.descricao}
+                                         description={product.description}
                                          ingredients={product.ingredients} />
                 </Col>
             )
-            } else if (filter === product.category) {
+            } else if (filter === product.category.name) {
               return (
               <Col className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
                          <ProductCard key={product.id}

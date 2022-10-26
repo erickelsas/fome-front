@@ -42,9 +42,9 @@
     margin-bottom: 1rem;
 }
 
-.card-ing-car p{
-    font-size: 0.9rem;
-    width: 70%;
+.card-ing-car .ingredients{
+    font-size: 0.75rem;
+    height: 100%;
     margin: 0px;
 }
 
