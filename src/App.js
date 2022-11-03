@@ -18,8 +18,8 @@ function App() {
         <Routes>
           {/* Rotas */}
           <Route path='/' element={<Home />}/>
-          { role === 'visitant' && <Route path='/login' element={<Login />}/>}
-          { role === 'admin' && <Route path='/painel' element={<Painel />} />}
+          <Route path='/login' element={role === 'visitant' ? <Login /> : <Navigate to='/' /> }/>
+          <Route path='/painel' element={ role === 'admin' ? <Painel /> : <Navigate to='/' /> } />
           {/* 404 */}
           <Route path='*' element={<Navigate to='/' />}/>
         </Routes>
