@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 //css
 import './NavBarHome.css';
@@ -16,10 +16,11 @@ import { RoleContext } from '../context/RoleContext';
 
 const NavBarHome = ({ children }) => {
   const { role, setRole } = useContext(RoleContext);
+  const [hamburguer, setHamburguer] = useState(false);
 
   return (
-    <Navbar className='bg-nav'>
-        <Container className='d-flex justify-content-between'>
+    <Navbar className='bg-nav' expand="lg">
+        <Container className='d-flex flex-row justify-content-between teste'>
             <NavLink to='/' className='w-100 d-flex justify-content-start align-items-center'>
               <Navbar.Brand className='d-flex align-items-center justify-content-center'>
                 <img src={logo} alt="FOME logo" className='logo'/>
@@ -28,7 +29,16 @@ const NavBarHome = ({ children }) => {
             <div className='d-flex justify-content-center align-items-center w-100 text-center text-light mb-0 mt-0 children'>
               { children !== '' ? children : (<></>)}
             </div>
-            <div className='menu-options w-100'>
+
+            <div className={hamburguer ? 'hamburguer-container change':'hamburguer-container'} onClick={() => {hamburguer ? setHamburguer(false):setHamburguer(true)}}>
+              <div className='hamburguer'></div>
+            </div>
+
+            <div className={
+            hamburguer ? 
+            'change menu-options w-100 d-flex flex-column flex-lg-row justify-content-center align-items-center'
+            :
+            'menu-options w-100 d-flex flex-column flex-lg-row justify-content-center align-items-center'}>
                 <NavLink to='/' end>Cardápio</NavLink>
                 {role === 'VISITOR_ROLE' && <NavLink to='/login'>Entrar</NavLink>}
                 {role === 'ADMIN_ROLE' && <NavLink to='/painel/admin'>Painel</NavLink>}

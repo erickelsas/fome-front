@@ -1,5 +1,5 @@
 /* width */
-::-webkit-scrollbar {
+.order-slide::-webkit-scrollbar {
     width: 0px;
   }
 

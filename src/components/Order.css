@@ -2,6 +2,11 @@
     transition: all 0.3s ease-in-out;
 }
 
+/* width */
+.order-component .body::-webkit-scrollbar {
+    width: 0px;
+  }
+
 .order-component{
     --fundo: #B6CBF3;
     --btn: #E32929;
