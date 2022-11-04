@@ -3,6 +3,6 @@
 }
 
 .kitchen .kitchen-container{
-    height: 90vh;
+    min-height: 90vh;
     width: 100%;
 }

@@ -1,37 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import './OrderSlide.css';
 
-const OrderSlide = ({ length }) => {
+const OrderSlide = ({ orders }) => {
+    const [newOrders, setNewOrders] = useState([]);
+    
+    useEffect(() => {
+       setNewOrders(orders.slice(7));
+    }, [orders]);
 
   return (
     <div className='order-slide'>
         <div className='slide-container d-flex flex-column'>
-            <div 
-                className='slide-content d-flex justify-content-between align-items-center'>
-                <h2>X-Ratão</h2>
-                <h3>23:05</h3>
-            </div>
-            <div 
-                className='slide-content d-flex justify-content-between align-items-center'>
-                <h2>X-Ratão</h2>
-                <h3>23:05</h3>
-            </div>
-            <div 
-                className='slide-content d-flex justify-content-between align-items-center'>
-                <h2>X-Ratão</h2>
-                <h3>23:05</h3>
-            </div>
-            <div 
-                className='slide-content d-flex justify-content-between align-items-center'>
-                <h2>X-Ratão</h2>
-                <h3>23:05</h3>
-            </div>
-            <div 
-                className='slide-content d-flex justify-content-between align-items-center'>
-                <h2>X-Ratão</h2>
-                <h3>23:05</h3>
-            </div>
+            {newOrders && newOrders.map((order) => (
+                                    <div 
+                                        key={order.id}
+                                        className='slide-content d-flex justify-content-between align-items-center'>
+                                        <h2>{order.product}</h2>
+                                        <h3>{order.hour}</h3>
+                                    </div>
+            ))}
         </div>
     </div>
   )

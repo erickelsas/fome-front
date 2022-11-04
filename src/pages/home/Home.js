@@ -20,7 +20,7 @@ import { OrderContext } from '../../context/OrderContext';
 import { RoleContext } from '../../context/RoleContext';
 
 const Home = () => {
-  const url = 'http://localhost:8080/products/find-all';
+  const url = 'http://localhost:8080/product/find-all';
   const { data: products, loading, error } = useFetch(url)
   const [ filter, setFilter ] = useState('todos');
   const [ openCar, setOpenCar ] = useState(false);

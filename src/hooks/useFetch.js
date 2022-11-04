@@ -50,7 +50,6 @@ export const useFetch = (url) => {
         const json = await res.json();
 
         setData(json);
-
         setMethod(null);
 
         // 8 - tratando erros
