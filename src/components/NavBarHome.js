@@ -9,7 +9,7 @@ import logo from '../assets/logo.svg';
 //components
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import { NavLink, Navigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { RoleContext } from '../context/RoleContext';
 
 
