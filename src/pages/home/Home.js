@@ -20,7 +20,7 @@ import { OrderContext } from '../../context/OrderContext';
 import { RoleContext } from '../../context/RoleContext';
 
 const Home = () => {
-  const url = 'https://murmuring-forest-23300.herokuapp.com/http://fomeback1-env.eba-fm3wqqc8.sa-east-1.elasticbeanstalk.com/product/find-all';
+  const url = 'http://localhost:8080/products/find-all';
   const { data: products, loading, error } = useFetch(url)
   const [ filter, setFilter ] = useState('todos');
   const [ openCar, setOpenCar ] = useState(false);

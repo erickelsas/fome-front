@@ -1,21 +1,16 @@
 import { useEffect, useState } from "react";
 
-// 4 - custom hook
 export const useFetch = (url) => {
   const [data, setData] = useState([]);
 
-  // 5 - refatorando post
   const [config, setConfig] = useState(null);
   const [method, setMethod] = useState(null);
   const [callFetch, setCallFetch] = useState(false);
 
-  // 6 - estado de loading
   const [loading, setLoading] = useState(false);
 
-  // 8 - tratando erros
   const [error, setError] = useState(false);
 
-  // 9 - desafio
   const [itemId, setItemId] = useState(null);
 
   const httpConfig = (data, method) => {

@@ -1,0 +1,8 @@
+.kitchen{
+    background-color: #E9DEDE;
+}
+
+.kitchen .kitchen-container{
+    height: 90vh;
+    width: 100%;
+}
