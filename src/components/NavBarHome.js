@@ -45,7 +45,7 @@ const NavBarHome = ({ children }) => {
                 {role === 'ATTENDANT_ROLE' && <NavLink to='/painel/admin'>Painel</NavLink>}
                 {role === 'KITCHEN_ROLE' && <NavLink to='/painel/kitchen'>Painel</NavLink>}
                 {role === 'WAITER_ROLE' && <NavLink to='/painel/waiter'>Painel</NavLink>}
-                {role !== 'VISITOR_ROLE' && <NavLink to ='/' end onClick={() => setRole(null)}>Sair</NavLink>}
+                {role !== 'VISITOR_ROLE' && <NavLink to ='/logout' end onClick={() => setRole(null)}>Sair</NavLink>}
             </div>
         </Container>
     </Navbar>

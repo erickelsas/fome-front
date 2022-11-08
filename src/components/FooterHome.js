@@ -8,7 +8,7 @@ const FooterHome = () => {
   return (
     <footer className='footer-home d-flex justify-content-center align-items-center'>
         <Container>
-          <div className='d-flex flex-direction-lg-row flex-column justify-content-center justify-content-lg-between align-items-center align-items-lg-center'>
+          <div className='d-flex flex-column-reverse flex-lg-row justify-content-center justify-content-lg-between align-items-lg-center w-100 py-3'>
             <div>
               <h4 className='direitos'>Todos os direitos reservados</h4>
             </div>

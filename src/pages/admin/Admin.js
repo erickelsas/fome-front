@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
+import SideMenu from '../../components/SideMenu'
 
 const Admin = () => {
+  const [ page, setPage ] = useState('pedidos');
+  
   return (
-    <div>Admin</div>
+    <div>
+      <SideMenu page={page}/>
+    </div>
   )
 }
 
