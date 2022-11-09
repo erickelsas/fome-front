@@ -10,6 +10,7 @@ import Privacy from './pages/privacy/Privacy';
 import Admin from './pages/admin/Admin';
 import Kitchen from './pages/kitchen/Kitchen';
 import Waiter from './pages/waiter/Waiter';
+import AdminTable from './pages/admin-mesas/AdminTable';
 
 function App() {
   const { role } = useContext(RoleContext);
@@ -24,8 +25,12 @@ function App() {
 
           {/* PAINEIS */}
           <Route 
-            path='/painel/admin' 
+            path='/painel/admin/pedidos'
             element={ role === 'ADMIN_ROLE' ? <Admin /> : <Navigate to='/' /> } />
+            <Route 
+            path='/painel/admin/mesas' 
+            element={ role === 'ADMIN_ROLE' ? <AdminTable /> : <Navigate to='/' /> } />
+
           <Route 
             path='/painel/kitchen' 
             element={(role === 'KITCHEN_ROLE' || role === 'ADMIN_ROLE') ? <Kitchen /> : <Navigate to='/' />} />

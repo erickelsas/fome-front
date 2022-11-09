@@ -41,8 +41,8 @@ const NavBarHome = ({ children }) => {
             'menu-options w-100 d-flex flex-column flex-lg-row justify-content-center align-items-center'}>
                 <NavLink to='/' end>Cardápio</NavLink>
                 {role === 'VISITOR_ROLE' && <NavLink to='/login'>Entrar</NavLink>}
-                {role === 'ADMIN_ROLE' && <NavLink to='/painel/admin'>Painel</NavLink>}
-                {role === 'ATTENDANT_ROLE' && <NavLink to='/painel/admin'>Painel</NavLink>}
+                {role === 'ADMIN_ROLE' && <NavLink to='/painel/admin/pedidos'>Painel</NavLink>}
+                {role === 'ATTENDANT_ROLE' && <NavLink to='/painel/attendant'>Painel</NavLink>}
                 {role === 'KITCHEN_ROLE' && <NavLink to='/painel/kitchen'>Painel</NavLink>}
                 {role === 'WAITER_ROLE' && <NavLink to='/painel/waiter'>Painel</NavLink>}
                 {role !== 'VISITOR_ROLE' && <NavLink to ='/logout' end onClick={() => setRole(null)}>Sair</NavLink>}

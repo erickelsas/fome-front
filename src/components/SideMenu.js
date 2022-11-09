@@ -7,7 +7,7 @@ import { BoxArrowLeft, ChevronLeft, Files, GraphUpArrow, LayoutSplit, PersonBadg
 import './SideMenu.css'
 
 const SideMenu = ({ page = 'pedidos'}) => {
-    const [ activeMenu, setActiveMenu ] = useState(true);
+    const [ activeMenu, setActiveMenu ] = useState(false);
 
     const handleClick = () => {
         if(activeMenu){
@@ -18,39 +18,39 @@ const SideMenu = ({ page = 'pedidos'}) => {
     }
 
   return (
-    <div className='menu-container-all'>
+    <div className={ activeMenu ? 'menu-container-all change' : 'menu-container-all' }>
         <div className={ activeMenu ? 'side-menu-container change' : 'side-menu-container' }>
             <aside className='d-flex flex-column justify-content-between align-items-center side-menu'>
                 <div className='d-flex justify-content-center align-items-center mt-3'>
                     <img className='logo' src={logo} alt="Logo F.O.M.E." />
                 </div>
                 <div className='links-container d-flex flex-column align-items-center justify-content-evenly h-100'>
-                    <NavLink to='/painel/admin' className={'d-flex justify-content-between align-items-center'}>
+                    <NavLink to='/painel/admin/pedidos'>
                         <Files color={ page === 'pedidos' ? '#E52424' : '#fff'} size={36}/>
                         <span className='side-menu-content'>Pedidos</span>
                     </NavLink>
 
-                    <NavLink to='/painel/admin/mesas' className='d-flex justify-content-between align-items-center'>
+                    <NavLink to='/painel/admin/mesas'>
                         <Square color={ page === 'mesas' ? '#E52424' : '#fff'} size={36}/>
                         <span className='side-menu-content'>Mesas</span>
                     </NavLink>
 
-                    <NavLink to='/painel/admin/cardapio' className='d-flex justify-content-between align-items-center'>
+                    <NavLink to='/painel/admin/cardapio'>
                         <LayoutSplit color={ page === 'cardapio' ? '#E52424' : '#fff'} size={36}/>
                         <span className='side-menu-content'>Cardápio</span>
                     </NavLink>
 
-                    <NavLink to='/painel/admin/perfis' className='d-flex justify-content-between align-items-center'>
+                    <NavLink to='/painel/admin/perfis'>
                         <PersonBadge color={ page === 'perfis' ? '#E52424' : '#fff'} size={36}/>
                         <span className='side-menu-content'>Perfis</span>
                     </NavLink>
 
-                    <NavLink to='/painel/admin/receita' className='d-flex justify-content-between align-items-center'>
+                    <NavLink to='/painel/admin/receita'>
                         <GraphUpArrow color={ page === 'receita' ? '#E52424' : '#fff'} size={36}/>
                         <span className='side-menu-content'>Receita</span>
                     </NavLink>
 
-                    <NavLink to='/logout' className='d-flex justify-content-between align-items-center'>
+                    <NavLink to='/logout'>
                         <BoxArrowLeft color='#fff' size={36}/>
                         <span className='side-menu-content'>Sair</span>
                     </NavLink>

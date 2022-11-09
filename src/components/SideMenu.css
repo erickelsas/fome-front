@@ -2,9 +2,20 @@
     width: 100%;
     height: 100%;
     overflow-x: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    transition: z-index 0s ease-in-out 1s;
+}
+
+.menu-container-all.change{
+    z-index: 1;
+    width: 100%;
 }
 
 .side-menu-container{
+    z-index: 1;
     height: 100vh;
     width: 100%;
     display: flex;
@@ -22,12 +33,13 @@
     position: absolute;
     top: 0;
     left: -100%;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.1s ease-in-out;
 
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.5));
 }
 
 .side-menu-container.change .side-menu{
+    z-index: 1;
     left: 0%;
     transition: all 0.3s ease-in-out;
 }
@@ -53,21 +65,20 @@
     color: #fff;
     font-weight: bold;
     font-size: 1.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .side-menu-container .side-menu .links-container .side-menu-content{
     margin-left: 1rem;
 }
 
-.side-menu-container .side-menu .links-container a.active::before{
-    content: '';
-    position: absolute;
-    width: 110%;
-    height: 4px;
-    background-color: #fff;
-    border-radius: 10px;
-    top: 100%;
-    left: -5%;
+.side-menu-container .side-menu .links-container a.active{
+    color: #E52424;
+    background: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
 }
 
 .side-menu-container .app-bg{
@@ -87,7 +98,7 @@
 
 .side-menu-container .app-bg .circle{
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     clip-path: circle(50% at 0 50%);
     background-color: #E52424;
     width: 20vw;
@@ -107,7 +118,7 @@
 
 .side-menu-container .app-bg .circle.opened{
     transform: rotate(180deg);
-    background: #fff;
+    background: #E9DEDE;
     right: 30vw;
 
     transition: all 0.3s ease-in-out;
@@ -161,7 +172,7 @@
 
     .side-menu-container .side-menu:hover .links-container a.active{
         color: #E52424;
-        box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.5);
+        filter: drop-shadow(0px 3px 6px rgba(0,0,0, 0.3));
     }
 
     .side-menu-container .side-menu:hover .links-container a:hover{
@@ -178,7 +189,7 @@
     }
 
     .side-menu-container .side-menu .links-container a.active{
-        background-color: #fff;
+        background-color: #E9DEDE;
         padding: 1rem 0.5rem;
         position: relative;
         border-radius: 50% 0px 0px 50%;
@@ -189,7 +200,7 @@
     }
 
     .side-menu-container .side-menu .links-container a.active:after{
-        background-color: #fff;
+        background-color: #E9DEDE;
         content: '';
         position: absolute;
         width: 100vw;
@@ -197,6 +208,16 @@
         top: 0;
         left: 100%;
     }
+
+    .side-menu-container .side-menu:hover .links-container a{
+        align-items: start;
+        width: 100%;
+    }
+    
+    .side-menu-container .side-menu:hover .links-container a:not(.active){
+        margin-left: 12%;
+    }
+    
 }
 
 @media (min-width: 1200px) { 
