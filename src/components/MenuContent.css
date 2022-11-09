@@ -1,0 +1,32 @@
+.menu-content-component{
+    width: 95%;
+    margin: 1rem auto;
+    padding: 1.2rem 1rem;
+    background-color: #E32424;
+    border-radius: 2rem;
+    border: none;
+}
+
+.menu-content-component:hover{
+    filter: brightness(90%);
+}
+
+.menu-content-component h3{
+    color: #fff;
+}
+
+.menu-content-component.activeComponent{
+    background-color: #FFB80E;
+}
+
+.menu-content-component.activeComponent h3{
+    color: #000;
+}
+
+.menu-content-component .icons .icon-circle{
+    height: 2.75rem;
+    width: 2.75rem;
+    border-radius: 50%;
+    background-color: #fff;
+    margin-left: 0.75vw;
+}

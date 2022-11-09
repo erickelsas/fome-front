@@ -41,11 +41,19 @@
 }
 
 .order-slide .slide-content h2{
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     margin: 0;
 }
 
 .order-slide .slide-content h3{
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     margin: 0;
+}
+
+.order-slide .slide-content .products-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
 }

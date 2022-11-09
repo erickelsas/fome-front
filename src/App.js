@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { RoleContext } from './context/RoleContext';
+
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Privacy from './pages/privacy/Privacy';
@@ -11,6 +12,7 @@ import Admin from './pages/admin/Admin';
 import Kitchen from './pages/kitchen/Kitchen';
 import Waiter from './pages/waiter/Waiter';
 import AdminTable from './pages/admin-mesas/AdminTable';
+import AdminMenu from './pages/admin-cardapio/AdminMenu';
 
 function App() {
   const { role } = useContext(RoleContext);
@@ -27,9 +29,12 @@ function App() {
           <Route 
             path='/painel/admin/pedidos'
             element={ role === 'ADMIN_ROLE' ? <Admin /> : <Navigate to='/' /> } />
-            <Route 
+          <Route 
             path='/painel/admin/mesas' 
             element={ role === 'ADMIN_ROLE' ? <AdminTable /> : <Navigate to='/' /> } />
+          <Route 
+            path='/painel/admin/cardapio' 
+            element={ role === 'ADMIN_ROLE' ? <AdminMenu /> : <Navigate to='/' /> } />
 
           <Route 
             path='/painel/kitchen' 

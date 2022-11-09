@@ -16,7 +16,9 @@ const OrderSlide = ({ orders }) => {
                                     <div 
                                         key={order.id}
                                         className='slide-content d-flex justify-content-between align-items-center'>
-                                        <h2>{order.product}</h2>
+                                        <div className='products-container'>
+                                          {order.products && order.products.map((product) => <h2>{product}</h2>)}
+                                        </div>
                                         <h3>{order.hour}</h3>
                                     </div>
             ))}
