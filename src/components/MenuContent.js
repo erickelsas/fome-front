@@ -13,10 +13,10 @@ const MenuContent = ({ product, setProductCardExhibition, active }) => {
         </div>
         <div className='icons d-flex justify-content-between align-items-center'>
             <div className='icon-circle d-flex justify-content-center align-items-center'>
-                <Pencil color='#E32424' size={32} />
+                <Pencil color='#E32424' size={24} />
             </div>
             <div className='icon-circle d-flex justify-content-center align-items-center'>
-                <Trash color='#E32424' size={32}/>
+                <Trash color='#E32424' size={24}/>
             </div>
         </div>
     </button>

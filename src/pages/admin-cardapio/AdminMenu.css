@@ -1,6 +1,5 @@
 body{
     background-color: #E9DEDE;
-    min-height: 100vh;
 }
 
 .admin-menu .admin-menu-board{
@@ -8,7 +7,7 @@ body{
     min-height: 90vh;
     position: relative;
     z-index: 0;
-    margin: 5vh 8vw;
+    margin: 0vh 8vw;
     width: 84vw;
     border-radius: 2rem;
 }
@@ -18,7 +17,7 @@ body{
 }
 
 .admin-menu .admin-menu-board .menu-container{
-    height: 68vh;
+    height: 65vh;
     width: 100%;
     border-radius: 1rem;
     background-color: #E9DEDE;
@@ -28,6 +27,7 @@ body{
 
 .admin-menu .admin-menu-board .buttons-container{
     margin: 3vh 0;
+    width: 100%;
 }
 
 .admin-menu .admin-menu-board .buttons-container button{
@@ -63,14 +63,14 @@ body{
 }
 
 @media (min-width: 992px) { 
-    body{
-        overflow-y: hidden;
-    }
-
     .admin-menu .admin-menu-board{
         margin: 5vh 16vw;
         width: 68vw;
         padding: 1vh 2vw;
+    }
+
+    .admin-menu .admin-menu-board .buttons-container{
+        width: auto;
     }
 
     .admin-menu .admin-menu-board .buttons-container button{

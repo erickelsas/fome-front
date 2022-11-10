@@ -1,6 +1,6 @@
 .menu-content-component{
     width: 95%;
-    margin: 1rem auto;
+    margin: 0.5rem auto;
     padding: 1.2rem 1rem;
     background-color: #E32424;
     border-radius: 2rem;
@@ -13,6 +13,7 @@
 
 .menu-content-component h3{
     color: #fff;
+    font-size: 1.25rem;
 }
 
 .menu-content-component.activeComponent{
@@ -24,8 +25,8 @@
 }
 
 .menu-content-component .icons .icon-circle{
-    height: 2.75rem;
-    width: 2.75rem;
+    height: 2rem;
+    width: 2rem;
     border-radius: 50%;
     background-color: #fff;
     margin-left: 0.75vw;
