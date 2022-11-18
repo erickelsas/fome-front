@@ -111,6 +111,10 @@
     transition: all 0.3s ease-in-out;
 }
 
+.admin-perfis .side-menu-container .app-bg .circle{
+    right: 82vw;
+}
+
 .side-menu-container .app-bg .circle .seta{
     transform: rotate(180deg);
     position: relative;
