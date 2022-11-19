@@ -2,7 +2,7 @@ import React from 'react'
 
 import './Order.css'
 
-const Order = ({ id, table, hour, products }) => {
+const Order = ({ id, table, hour, products}) => {
     console.log(table);
   return (
     <div className='order-component d-flex flex-column align-items center'>

@@ -13,6 +13,7 @@ import Kitchen from './pages/kitchen/Kitchen';
 import Waiter from './pages/waiter/Waiter';
 import AdminTable from './pages/admin-mesas/AdminTable';
 import AdminMenu from './pages/admin-cardapio/AdminMenu';
+import Attendant from './pages/attendant/Attendant';
 
 function App() {
   const { role } = useContext(RoleContext);
@@ -23,7 +24,7 @@ function App() {
         <Routes>
           {/* Rotas */}
           <Route path='/' element={<Home />}/>
-          <Route path='/login' element={role === null ? <Login /> : <Navigate to='/' /> }/>
+          <Route path='/login' element={role === 'ADMIN_ROLE' ? <Login /> : <Navigate to='/' /> }/>
 
           {/* PAINEIS */}
           <Route 
@@ -41,7 +42,7 @@ function App() {
             element={(role === 'KITCHEN_ROLE' || role === 'ADMIN_ROLE') ? <Kitchen /> : <Navigate to='/' />} />
           <Route 
             path='/painel/attendant' 
-            element={(role === 'ATTENDANT_ROLE' || role === 'ADMIN_ROLE') ? <Kitchen /> : <Navigate to='/' />} />
+            element={(role === 'ATTENDANT_ROLE' || role === 'ADMIN_ROLE') ? <Attendant /> : <Navigate to='/' />} />
           <Route 
             path='/painel/waiter' 
             element={(role === 'WAITER_ROLE' || role === 'ADMIN_ROLE') ? <Waiter /> : <Navigate to='/' />} />
