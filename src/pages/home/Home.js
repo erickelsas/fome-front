@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useFetch } from '../../hooks/useFetch';
+import { useFetchCRUD } from '../../hooks/useFetchCRUD';
 
 import './Home.css';
 
@@ -18,16 +18,17 @@ import FooterHome from '../../components/FooterHome';
 import CarCard from '../../components/CarCard';
 import { OrderContext } from '../../context/OrderContext';
 import { RoleContext } from '../../context/RoleContext';
+import { RoutesContext } from '../../context/RoutesContext';
 
 const Home = () => {
-  const url = 'http://localhost:8080/product/find-all';
-  const { data: products, loading, error } = useFetch(url)
+  const { urls } = useContext(RoutesContext);
+  const { data: products, loading, error, httpConfig } = useFetchCRUD(urls.product);
   const [ filter, setFilter ] = useState('todos');
   const [ openCar, setOpenCar ] = useState(false);
   const { order, total, setOrder, setTotal } = useContext(OrderContext);
-  const { role } = useContext(RoleContext);
+  const { role, username } = useContext(RoleContext);
 
-  console.log(products);
+  const [id, setId] = useState(0);
 
   const handleOpenCar = () => {
     if(openCar === true) {
@@ -37,14 +38,28 @@ const Home = () => {
     }
   }
 
-  const realizarPedido = () => {
+  const realizarPedido = async () => {
     if(role !== 'visitant'){
-        setOrder([]);
-        setTotal(0);
+       let res = await fetch(`${urls.user}find-by-username/${username}`);
+       let json = await res.json();
+
+       setId(json.id);
+
+      const makeOrderObj = {
+        id: null,
+        totalValue: total,
+        EPaymentMethod: null,
+        newIdProductOrder: order.map((o) => o.id),
+        table_id: {
+          id,
+        }
+      };
+
+      res = await fetch(`${urls.table}/make-order/`, {method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(makeOrderObj)});
+      json = await res.json();
     } else {
         alert('Você precisa estar logado!');
     }
-
 }
 
   return (
@@ -97,7 +112,7 @@ const Home = () => {
             {(!loading && products.length === 0 && (<p className='w-100 text-center text-light'>Houve um problema! Os produtos não podem ser carregados, tente novamente!</p>)) || error}
             {!loading && products.map((product) => {if (filter === 'todos'){
               return (
-                <Col className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
+                <Col key={product.id} className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
                             <ProductCard key={product.id}
                                          id = {product.id}
                                          photo={product.photo}
@@ -109,7 +124,7 @@ const Home = () => {
             )
             } else if (filter === product.category.name) {
               return (
-              <Col className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
+              <Col key={product.id} className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
                          <ProductCard key={product.id}
                                       id = {product.id}
                                       photo={product.photo}
