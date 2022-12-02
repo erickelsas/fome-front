@@ -6,7 +6,7 @@ const ProductCard = ({id, photo, name, price, description, ingredients}) => {
     const {order, setOrder, total, setTotal} = useContext(OrderContext);
 
     const handleClick = () => {
-        setOrder(prevOrder => [...prevOrder, { 'num': order.length, id, photo, name, price, description, ingredients }]);
+        setOrder(prevOrder => [...prevOrder, { id, photo, name, price, description, ingredients }]);
         setTotal(total + price);
     }
 

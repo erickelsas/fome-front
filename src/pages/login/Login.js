@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import NavBarHome from '../../components/NavBarHome';
 import bgLogin  from '../../assets/bg-login.png';
 import InputText from '../../components/InputText';
@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { RoleContext } from '../../context/RoleContext';
 
 import './Login.css'
+import { RoutesContext } from '../../context/RoutesContext';
+import { useLogin } from '../../hooks/useLogin';
 
 
 
@@ -19,8 +21,10 @@ const Login = () => {
   const [ name, setName ] = useState('');
   const [ cpf, setCpf] = useState('');
 
-  const { setRole, role } = useContext(RoleContext);
+  const { token } = useContext(RoleContext);
+  const { urls } = useContext(RoutesContext);
 
+  const { httpConfig, loading, error } = useLogin();
   const navigate = useNavigate();
  
   const handleClickPass = () => {
@@ -32,7 +36,7 @@ const Login = () => {
   }
 
   const userCondition = (user) => { return user.length !== 0};
-  const passCondition = (password) => { return password.length >= 6};
+  const passCondition = (password) => { return password.length >= 3};
 
   const cpfCondition = (cpf) => {
     let pDigVerificador = ((cpf.charAt(0) * 10 + cpf.charAt(1) * 9 + cpf.charAt(2) * 8 + cpf.charAt(3) * 7 + cpf.charAt(4) * 6 + cpf.charAt(5) * 5 + cpf.charAt(6) * 4 + cpf.charAt(7) * 3 + cpf.charAt(8) * 2)* 10) % 11;
@@ -47,42 +51,56 @@ const Login = () => {
       sDigVerificador = 0;
     }
 
-    if(pDigVerificador === parseInt(cpf.charAt(9)) && sDigVerificador === parseInt(cpf.charAt(10))){
-      return true;
-    }
-
-    return false;
+    return !!(pDigVerificador === parseInt(cpf.charAt(9)) && sDigVerificador === parseInt(cpf.charAt(10)));
   }
 
-  const handleOpen = () => {
-    if(userCondition(user) && passCondition(password)){
+  const handleOpen = (e) => {
+    e.preventDefault();
+
+    if(!isNaN(user) && userCondition(user) && passCondition(password)){
       setShowModal(true);
+    } else if(isNaN(user) && userCondition(user) && passCondition(password)){
+      const loginObj = {
+        username: user,
+        password
+      }
+
+      httpConfig('POST', loginObj);
+
+      setUser('');
+      setPassword('');
     }
   }
 
-  const handleClose = () => {
-    if(cpfCondition(cpf) && userCondition(name)){
-      setShowModal(false);
-   }
-  }
+  useEffect(() => {
+    if(loading === false && !error){
+      if(showModal){
+        setShowModal(false);
+      }
+      navigate('/');
+    }
+  }, [showModal, navigate, loading, error])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if(cpfCondition(cpf) && userCondition(name)){
-      if(cpf === '52533776890') {
-        setRole('admin');
-      } else {
-        setRole('client');
+      const loginObj = {
+        username: user,
+        password
       }
 
+      httpConfig('POST', loginObj);
+
+      localStorage.setItem('cpf', JSON.stringify(cpf));
+      localStorage.setItem('name', JSON.stringify(name));
+      localStorage.setItem('user', JSON.stringify(user));
+    
       setUser('');
       setPassword('');
       setName('');
       setCpf('');
-    
-      handleClose();
-      navigate('/');
     }
   }
 
@@ -92,7 +110,8 @@ const Login = () => {
             <div className='col-12 col-lg-6 login-left'>
               <NavBarHome />
               <div className='login-content d-flex justify-content-center align-items-center'>
-                <form className='d-flex flex-column justify-content-center' onSubmit={(e) => {e.preventDefault(); handleOpen();}}>
+              {!loading && (<>
+                <form className='d-flex flex-column justify-content-center' onSubmit={(e) => handleOpen(e)}>
                   <InputText name='user' value={user} setAttr={setUser} condition={userCondition}>Mesa/Usuário</InputText>
 
                   <label htmlFor="password">Senha</label>
@@ -134,6 +153,12 @@ const Login = () => {
                     </form>
                   </div>
                 </Modal>
+                </>)}
+
+                {loading && (<div className='d-flex w-100 justify-content-center align-items-center'>
+                <div className='loading'></div>
+              </div>)}
+                
               </div>
             </div>
             <div className='col-0 col-lg-6 login-right'>

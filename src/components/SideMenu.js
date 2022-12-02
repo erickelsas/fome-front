@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.svg'
 
 import { BoxArrowLeft, ChevronLeft, Files, GraphUpArrow, LayoutSplit, PersonBadge, Square } from 'react-bootstrap-icons';
 
 import './SideMenu.css'
+import { useLogin } from '../hooks/useLogin';
 
 const SideMenu = ({ page = 'pedidos'}) => {
     const [ activeMenu, setActiveMenu ] = useState(false);
+    const { logout } = useLogin();
+    const navigate = useNavigate();
 
     const handleClick = () => {
         if(activeMenu){
@@ -22,7 +25,7 @@ const SideMenu = ({ page = 'pedidos'}) => {
         <div className={ activeMenu ? 'side-menu-container change' : 'side-menu-container' }>
             <aside className='d-flex flex-column justify-content-between align-items-center side-menu'>
                 <div className='d-flex justify-content-center align-items-center mt-3'>
-                    <img className='logo' src={logo} alt="Logo F.O.M.E." />
+                    <img onClick={() => navigate('/')} className='logo' src={logo} alt="Logo F.O.M.E." />
                 </div>
                 <div className='links-container d-flex flex-column align-items-center justify-content-evenly h-100'>
                     <NavLink to='/painel/admin/pedidos'>
@@ -50,7 +53,7 @@ const SideMenu = ({ page = 'pedidos'}) => {
                         <span className='side-menu-content'>Receita</span>
                     </NavLink>
 
-                    <NavLink to='/logout'>
+                    <NavLink to='/logout' onClick={() => logout(true)}>
                         <BoxArrowLeft color='#fff' size={36}/>
                         <span className='side-menu-content'>Sair</span>
                     </NavLink>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import './Waiter.css';
 
@@ -7,57 +7,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from '../../components/Table';
 
+import { useFetchCRUD } from '../../hooks/useFetchCRUD';
+import { RoutesContext } from '../../context/RoutesContext';
+import { RoleContext } from '../../context/RoleContext';
+
 const Waiter = () => {
-  const [tables, setTables] = useState([
-    {
-        'id': '01',
-        'number': '01'
-    },
-    {
-        'id': '02',
-        'number': '02'
-    },
-    {
-        'id': '03',
-        'number': '03'
-    },
-    {
-        'id': '04',
-        'number': '04'
-    },
-    {
-        'id': '05',
-        'number': '05'
-    },
-    {
-        'id': '06',
-        'number': '06'
-    },
-    {
-        'id': '07',
-        'number': '07'
-    },
-    {
-        'id': '08',
-        'number': '08'
-    },
-    {
-        'id': '09',
-        'number': '09'
-    },
-    {
-        'id': '10',
-        'number': '10'
-    },
-    {
-        'id': '11',
-        'number': '11'
-    },
-    {
-        'id': '12',
-        'number': '12'
-    }
-])
+    const { token } = useContext(RoleContext);
+    const { urls } = useContext(RoutesContext);
+    const { data: users, loading, error } = useFetchCRUD(urls.users, token);
+
+    const tables = users.filter(user => user.userRole === 'TABLE_ROLE');
 
   return (
     <div className='waiter'>

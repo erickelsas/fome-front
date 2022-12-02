@@ -48,9 +48,17 @@ body{
     color: #E32929;
 }
 
-.admin-menu .admin-menu-board .card-container{
-    margin: 5vh 0;
+.admin-menu 
+.admin-menu-board .card-container .menu-content-component{
     width: 100%;
+}
+.admin-menu .loading-container{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 

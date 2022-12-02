@@ -7,10 +7,6 @@
     border: none;
 }
 
-.menu-content-component:hover{
-    filter: brightness(90%);
-}
-
 .menu-content-component h3{
     color: #fff;
     font-size: 1.25rem;
@@ -30,4 +26,9 @@
     border-radius: 50%;
     background-color: #fff;
     margin-left: 0.75vw;
+}
+
+.menu-content-component .icons .icon-circle:hover{
+    transform: scale(1.1);
+    filter: brightness(90%);
 }

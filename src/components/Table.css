@@ -39,3 +39,38 @@
 .table-component .btn-red:hover{
     filter: brightness(80%);
 }
+
+.modal-footer button.delTable,
+.modal-footer button.cancel,
+.modal-footer button.genPass,
+.modal-footer button.apagar,
+.modal-footer button.editar{
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+
+    filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.3));
+}
+
+.modal-footer button.delTable:hover,
+.modal-footer button.cancel:hover,
+.modal-footer button.genPass:hover,
+.modal-footer button.apagar:hover,
+.modal-footer button.editar:hover{
+    filter: brightness(80%);
+}
+
+.modal-footer button.delTable,
+.modal-footer button.apagar{
+    background-color: #E32929;
+    color: #fff;
+}
+
+.modal-footer button.cancel{
+    background-color: #ccc;
+}
+
+.modal-footer button.genPass,
+.modal-footer button.editar{
+    background-color: #90EE90;
+}

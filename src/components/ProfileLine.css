@@ -64,6 +64,12 @@
     content: ',00';
 }
 
+.modal-content .radio-role{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 3rem;
+}
+
 @media (min-width: 768px) { 
     .profile-line-component{
         padding: 0.75rem 2rem;

@@ -5,15 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { OrderContextProvider } from './context/OrderContext';
 import { RoleContextProvider } from './context/RoleContext';
+import { RoutesContextProvider } from './context/RoutesContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RoleContextProvider>
-      <OrderContextProvider>
-        <App />
-      </OrderContextProvider>
-    </RoleContextProvider>
+    <RoutesContextProvider>
+      <RoleContextProvider>
+        <OrderContextProvider>
+            <App />
+        </OrderContextProvider>
+      </RoleContextProvider>
+    </RoutesContextProvider>
   </React.StrictMode>
 );
 

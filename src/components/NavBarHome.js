@@ -11,12 +11,14 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom'
 import { RoleContext } from '../context/RoleContext';
+import { useLogin } from '../hooks/useLogin';
 
 
 
 const NavBarHome = ({ children }) => {
   const { role, setRole } = useContext(RoleContext);
   const [hamburguer, setHamburguer] = useState(false);
+  const { logout } = useLogin();
 
   return (
     <Navbar className='bg-nav' expand="lg">
@@ -40,12 +42,12 @@ const NavBarHome = ({ children }) => {
             :
             'menu-options w-100 d-flex flex-column flex-lg-row justify-content-center align-items-center'}>
                 <NavLink to='/' end>Cardápio</NavLink>
-                {role === 'VISITOR_ROLE' && <NavLink to='/login'>Entrar</NavLink>}
-                {role === 'ADMIN_ROLE' && <NavLink to='/painel/admin/pedidos'>Painel</NavLink>}
-                {role === 'ATTENDANT_ROLE' && <NavLink to='/painel/attendant'>Painel</NavLink>}
-                {role === 'KITCHEN_ROLE' && <NavLink to='/painel/kitchen'>Painel</NavLink>}
-                {role === 'WAITER_ROLE' && <NavLink to='/painel/waiter'>Painel</NavLink>}
-                {role !== 'VISITOR_ROLE' && <NavLink to ='/logout' end onClick={() => setRole(null)}>Sair</NavLink>}
+                {role === 'VISITOR' && <NavLink to='/login'>Entrar</NavLink>}
+                {role === 'ADMIN' && <NavLink to='/painel/admin/pedidos'>Painel</NavLink>}
+                {role === 'ATTENDANT' && <NavLink to='/painel/attendant'>Painel</NavLink>}
+                {role === 'KITCHEN' && <NavLink to='/painel/kitchen'>Painel</NavLink>}
+                {role === 'WAITER' && <NavLink to='/painel/waiter'>Painel</NavLink>}
+                {role !== 'VISITOR' && <NavLink to ='/logout' end onClick={() => logout(true)}>Sair</NavLink>}
             </div>
         </Container>
     </Navbar>

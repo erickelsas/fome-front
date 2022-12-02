@@ -155,6 +155,19 @@
     transition: all 0.3s ease-in-out;
 }
 
+.admin-perfis .loading{
+    border: 4px solid #FFB80E;
+    border-top: 4px solid #E32929;
+}
+
+.admin-perfis .loading-container{
+    height: 48vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (min-width: 576px) {
     .perfis-header .search-bar input{
         width: 25vw;
@@ -177,7 +190,7 @@
     }
 
     .admin-perfis .admin-perfis-board{
-        min-height: 100vh;
+        min-height: 90vh;
         position: relative;
         z-index: 0;
         margin: 5vh 16vw;
@@ -199,7 +212,11 @@
     .table-header .id-header-container{
         width: 10%;
     }
-    
+    .table-body .profile-line-component .id-container,
+    .table-body .id-header-container{
+        width: 10%;
+    }
+
     .table-body .profile-line-component .name-container,
     .table-header .name-header-container{
         width: 20%;
