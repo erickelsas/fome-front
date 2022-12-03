@@ -33,7 +33,7 @@ const ProfileLine = ({ profileProp, profiles, setProfiles }) => {
   const editProfile = async () => {
     const newProfile = {
       name,
-      cpf,
+      cpf: String.toString(cpf),
       password,
       salary,
       username,

@@ -1,5 +1,7 @@
 .car-card img{
     transform: scale(0.15);
+    border-radius: 16px 0px 0px 16px;
+    max-height: 18vh;
 }
 
 .car-card .img-bg{
@@ -43,7 +45,24 @@
 
 
 .car-card button{
+    font-size: 0.825rem;
+    width: 100%;
+    padding: 0.325rem;
+    border: 2px solid #e32929;
+    border-radius: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.car-card .buttons-container button:first-child{
+    margin-bottom: 0.5rem;
+}
+
+.car-card .buttons-container{
+    width: 100%;
     height: 100%;
-    border: none;
-    border-radius: 16px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center
 }

@@ -28,6 +28,8 @@ const Home = () => {
   const { order, total, setOrder, setTotal } = useContext(OrderContext);
   const { role, username } = useContext(RoleContext);
 
+  const [ loadingEfetuar, setLoadingEfetuar ] = useState(false);
+
   const [id, setId] = useState(0);
 
   const handleOpenCar = () => {
@@ -38,28 +40,49 @@ const Home = () => {
     }
   }
 
+  const arrayPedidos = () => {
+    const ids = [];
+    order.forEach(o => {
+      for(let i = 0; i < o.qtd; i++){
+        ids.push(o.id);
+      }    
+    });
+
+    return ids;
+  }
+
   const realizarPedido = async () => {
+    setLoadingEfetuar(true);
     if(role !== 'visitant'){
-       let res = await fetch(`${urls.user}find-by-username/${username}`);
+       let res = await fetch(`${urls.user}find-id/${username}`);
        let json = await res.json();
 
        setId(json.id);
 
+       const newIdProductOrder = arrayPedidos();
+
+       console.log(newIdProductOrder);
+
       const makeOrderObj = {
         id: null,
         totalValue: total,
+        cpfCliente: JSON.parse(localStorage.getItem('cpf')),
         EPaymentMethod: null,
-        newIdProductOrder: order.map((o) => o.id),
+        newIdProductOrder,
         table_id: {
           id,
         }
       };
 
-      res = await fetch(`${urls.table}/make-order/`, {method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(makeOrderObj)});
+      res = await fetch(`${urls.table}make-order/`, {method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(makeOrderObj)});
       json = await res.json();
+
+      setOrder([]);
+      setTotal(0);
     } else {
         alert('Você precisa estar logado!');
     }
+    setLoadingEfetuar(false);
 }
 
   return (
@@ -81,11 +104,12 @@ const Home = () => {
                 {order && order.map((product) => (
                   <CarCard key={product.num}
                            id={product.id}
-                           num={product.num}
                            photo={product.photo} 
                            name={product.name} 
                            price={product.price} 
-                           description={product.description}/>
+                           description={product.description}
+                           qtd={product.qtd}
+                           />
                 ))}
               </div>
             </div>
@@ -93,7 +117,7 @@ const Home = () => {
               <div className='col-6'>
                 <h5 className='text-white'>Total: R$ {Number.isInteger(total) ? total : total.toFixed(2)}</h5>
               </div>
-              <button className='pedir mb-3' onClick={realizarPedido}>Efetuar pedido!</button>
+              <button className='pedir mb-3' onClick={realizarPedido} disabled={loadingEfetuar}>Efetuar pedido!</button>
             </div>
           </div>
 

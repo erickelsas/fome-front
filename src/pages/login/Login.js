@@ -67,6 +67,10 @@ const Login = () => {
 
       httpConfig('POST', loginObj);
 
+      localStorage.removeItem('cpf');
+      localStorage.removeItem('name');
+      localStorage.removeItem('user');
+
       setUser('');
       setPassword('');
     }

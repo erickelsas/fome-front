@@ -6,7 +6,15 @@ const ProductCard = ({id, photo, name, price, description, ingredients}) => {
     const {order, setOrder, total, setTotal} = useContext(OrderContext);
 
     const handleClick = () => {
-        setOrder(prevOrder => [...prevOrder, { id, photo, name, price, description, ingredients }]);
+        const newOrder = [...order];
+        const orderIndex = order.findIndex(order => order.id === id);
+        
+        if(orderIndex !== -1){
+            newOrder[orderIndex].qtd++;
+            setOrder(newOrder);
+        } else {
+            setOrder(prevOrder => [...prevOrder, { id, photo, name, price, description, ingredients, qtd: 1}]);
+        }
         setTotal(total + price);
     }
 
