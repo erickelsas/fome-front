@@ -3,10 +3,10 @@ import { createContext } from "react";
 export const RoutesContext = createContext();
 
 export const RoutesContextProvider = ({children}) => {
-    const urlGeral = 'https://thingproxy.freeboard.io/fetch/https://cors-anywhere.herokuapp.com/http://fomev10-env.eba-sq3qqxd7.sa-east-1.elasticbeanstalk.com';
+    const urlGeral = 'https://cors-anywhere.herokuapp.com/http://fomev10-env.eba-sq3qqxd7.sa-east-1.elasticbeanstalk.com';
 
     const urls = {
-        geral: 'https://thingproxy.freeboard.io/fetch/http://fomev10-env.eba-sq3qqxd7.sa-east-1.elasticbeanstalk.com',
+        geral: 'http://fomev10-env.eba-sq3qqxd7.sa-east-1.elasticbeanstalk.com',
         product: `${urlGeral}/product/`,
         user: `${urlGeral}/user/`,
         order: `${urlGeral}/order/`,
