@@ -3,7 +3,7 @@ import { createContext } from "react";
 export const RoutesContext = createContext();
 
 export const RoutesContextProvider = ({children}) => {
-    const urlGeral = 'https://cors-anywhere.herokuapp.com/http://fomev10-env.eba-sq3qqxd7.sa-east-1.elasticbeanstalk.com';
+    const urlGeral = 'http://fomev10-env.eba-sq3qqxd7.sa-east-1.elasticbeanstalk.com';
 
     const urls = {
         geral: 'http://fomev10-env.eba-sq3qqxd7.sa-east-1.elasticbeanstalk.com',
