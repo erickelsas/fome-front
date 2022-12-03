@@ -29,6 +29,9 @@ export const useLogin = () => {
     const logout = (e) => {
         if(e){
             localStorage.removeItem('token');
+            localStorage.removeItem('cpf');
+            localStorage.removeItem('user');
+            localStorage.removeItem('name');
             setRole('VISITOR');
             setToken('');
             navigate('/');

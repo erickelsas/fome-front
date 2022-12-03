@@ -75,7 +75,6 @@ const Home = () => {
       };
 
       res = await fetch(`${urls.table}make-order/`, {method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(makeOrderObj)});
-      json = await res.json();
 
       setOrder([]);
       setTotal(0);

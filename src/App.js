@@ -27,7 +27,7 @@ function App() {
   
   return (
     <div className="App">
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter>
         <Routes>
           {/* Rotas */}
           <Route path='/' element={<Home />}/>

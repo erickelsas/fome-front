@@ -100,6 +100,7 @@ const Login = () => {
       localStorage.setItem('cpf', JSON.stringify(cpf));
       localStorage.setItem('name', JSON.stringify(name));
       localStorage.setItem('user', JSON.stringify(user));
+      localStorage.removeItem('token');
     
       setUser('');
       setPassword('');
