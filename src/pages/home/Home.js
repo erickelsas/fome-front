@@ -89,7 +89,7 @@ const Home = () => {
         <NavBarHome/>
         <div className='wave-container'>
           <div className='d-flex flex-column align-items-center justify-content-center mt-5'>
-            <h2 className='slogan text-center w-75'>Ferramenta Online para Manutenção de E-cardápios</h2>
+            <h2 className='slogan text-center'><span>F</span>erramenta <span>O</span>nline para <span>M</span>anutenção de <span>E</span>-cardápios</h2>
             <img src={xrataoHome} alt="X-Ratão!" className='lanche' />
           </div>
           <img src={wave} alt="Onda de fundo" className='wave'/>

@@ -15,7 +15,7 @@ const AdminRevenue = () => {
     const today = date.getDate();
     const currentMonth = date.getMonth() + 1;
     const currentYear = date.getFullYear();
-
+    
     const finalDate = `${currentYear}-${currentMonth}-${today}`;
 
     const [value, setValue] = useState(0);

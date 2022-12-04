@@ -15,11 +15,15 @@ import { RoleContext } from '../../context/RoleContext';
 const Admin = () => {
   const {urls} = useContext(RoutesContext);
   const { token } = useContext(RoleContext);
-  const { data: orders, loading, error } = useFetchCRUD(`${urls.table}find-new-orders/`, token);
+  const { data: orders } = useFetchCRUD(`${urls.table}find-new-orders/`, token);
 
   console.log(orders);
 
   const [ordersNotSlider, setOrdersNotSlider] = useState(orders.splice(0, 7));
+
+  useEffect(() => {
+    setOrdersNotSlider(orders.splice(0, 7));
+  }, [orders]);
 
   return (
     <div className='pedidos-admin d-flex'>

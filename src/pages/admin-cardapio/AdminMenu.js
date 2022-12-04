@@ -13,7 +13,6 @@ import Modal from 'react-bootstrap/Modal';
 import InputText from '../../components/InputText';
 import { RoleContext } from '../../context/RoleContext';
 
-import { Pencil, Trash } from 'react-bootstrap-icons';
 import CategoryCard from '../../components/CategoryCard';
 
 const AdminMenu = () => {
@@ -22,11 +21,11 @@ const AdminMenu = () => {
     const [ filter, setFilter ] = useState('todos');
 
     const { token } = useContext(RoleContext);
-    const { data: categories, loading: loadingCategory, error: errorCategory, httpConfig: httpConfigCategory } = useFetchCRUD(urls.category);
+    const { data: categories, httpConfig: httpConfigCategory } = useFetchCRUD(urls.category);
 
     categories.sort((a,b) => {return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : a.name.toLowerCase() > b.name.toLowerCase() ? 1 : 0});
 
-    const { data: productsNotFilter, loading, error, httpConfig: httpConfigProduct } = useFetchCRUD(urls.product);
+    const { data: productsNotFilter, loading, httpConfig: httpConfigProduct } = useFetchCRUD(urls.product);
     
 
     const [ products, setProducts ] = useState(productsNotFilter);
