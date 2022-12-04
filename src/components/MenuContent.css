@@ -21,6 +21,7 @@
 }
 
 .menu-content-component .icons .icon-circle{
+    cursor: pointer;
     height: 2rem;
     width: 2rem;
     border-radius: 50%;

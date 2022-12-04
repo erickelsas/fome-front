@@ -8,7 +8,8 @@ import './AdminRevenue.css';
 
 const AdminRevenue = () => {
     const [filter, setFilter] = useState('mês');
-    const [ loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [mostSoldOrders, setMostSoldOrders] = useState([]);
 
     const date = new Date();
     const today = date.getDate();
@@ -21,6 +22,16 @@ const AdminRevenue = () => {
 
     const { urls } = useContext(RoutesContext);
     const { token } = useContext(RoleContext);
+
+    useEffect(() => {
+        const fetchMostSoldOrders = async () => {
+            const res = await fetch(`${urls.table}most-sold-products`, {method:"GET", headers:{"Authorization":`Bearer ${token}`}});
+            const json = await res.json();
+
+            setMostSoldOrders(json);
+        }
+        fetchMostSoldOrders();
+    }, [])
 
     useEffect(() => {
         const fetchValue = async () => {
@@ -78,7 +89,8 @@ const AdminRevenue = () => {
                             onClick={() => {setFilter('ano');}}>
                                 ano</button>
                     </div>
-                    <h2 className='display-3 valor'>R${value},00</h2>
+                    {loading && <h3 className='mb-0 loading-word'>Carregando</h3>}
+                    {!loading && <h2 className='display-3 valor'>R${value},00</h2>}
                 </div>
                 <div className='grafico'>
 
@@ -88,79 +100,14 @@ const AdminRevenue = () => {
                 <h1>Mais vendidos</h1>
                 <div className="mais-vendidos-container">
                     
-                    <div className="card-mais-vendido">
+                    {mostSoldOrders !== [] && mostSoldOrders.map((order) => (                    <div className="card-mais-vendido">
                         <div className='titulo'>
-                            <h3>X-Ratão</h3>
+                            <h3>{order.product.name}</h3>
                         </div>
                         <div className='quantidade'>
-                            <h3>30</h3>
+                            <h3>{order.amount}</h3>
                         </div>
-                    </div>
-
-                    <div className="card-mais-vendido">
-                        <div className='titulo'>
-                            <h3>X-Ratão</h3>
-                        </div>
-                        <div className='quantidade'>
-                            <h3>30</h3>
-                        </div>
-                    </div>
-                    <div className="card-mais-vendido">
-                        <div className='titulo'>
-                            <h3>X-Ratão</h3>
-                        </div>
-                        <div className='quantidade'>
-                            <h3>30</h3>
-                        </div>
-                    </div>
-                    <div className="card-mais-vendido">
-                        <div className='titulo'>
-                            <h3>X-Ratão</h3>
-                        </div>
-                        <div className='quantidade'>
-                            <h3>30</h3>
-                        </div>
-                    </div>
-                    <div className="card-mais-vendido">
-                        <div className='titulo'>
-                            <h3>X-Ratão</h3>
-                        </div>
-                        <div className='quantidade'>
-                            <h3>30</h3>
-                        </div>
-                    </div>
-                    <div className="card-mais-vendido">
-                        <div className='titulo'>
-                            <h3>X-Ratão</h3>
-                        </div>
-                        <div className='quantidade'>
-                            <h3>30</h3>
-                        </div>
-                    </div>
-                    <div className="card-mais-vendido">
-                        <div className='titulo'>
-                            <h3>X-Ratão</h3>
-                        </div>
-                        <div className='quantidade'>
-                            <h3>30</h3>
-                        </div>
-                    </div>
-                    <div className="card-mais-vendido">
-                        <div className='titulo'>
-                            <h3>X-Ratão</h3>
-                        </div>
-                        <div className='quantidade'>
-                            <h3>30</h3>
-                        </div>
-                    </div>
-                    <div className="card-mais-vendido">
-                        <div className='titulo'>
-                            <h3>X-Ratão</h3>
-                        </div>
-                        <div className='quantidade'>
-                            <h3>30</h3>
-                        </div>
-                    </div>
+                    </div>))}
                 </div>
             </div>
         </aside>

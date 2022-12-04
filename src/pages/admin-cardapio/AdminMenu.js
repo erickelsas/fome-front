@@ -13,6 +13,9 @@ import Modal from 'react-bootstrap/Modal';
 import InputText from '../../components/InputText';
 import { RoleContext } from '../../context/RoleContext';
 
+import { Pencil, Trash } from 'react-bootstrap-icons';
+import CategoryCard from '../../components/CategoryCard';
+
 const AdminMenu = () => {
     const { urls } = useContext(RoutesContext);
 
@@ -20,7 +23,11 @@ const AdminMenu = () => {
 
     const { token } = useContext(RoleContext);
     const { data: categories, loading: loadingCategory, error: errorCategory, httpConfig: httpConfigCategory } = useFetchCRUD(urls.category);
+
+    categories.sort((a,b) => {return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : a.name.toLowerCase() > b.name.toLowerCase() ? 1 : 0});
+
     const { data: productsNotFilter, loading, error, httpConfig: httpConfigProduct } = useFetchCRUD(urls.product);
+    
 
     const [ products, setProducts ] = useState(productsNotFilter);
 
@@ -87,6 +94,8 @@ const AdminMenu = () => {
         handleClose();
     }
 
+    console.log(categories);
+
   return (
     <div className='admin-menu'>
         <SideMenu page='cardapio'/>
@@ -116,7 +125,7 @@ const AdminMenu = () => {
             <div className='col-10 col-lg-7 d-flex flex-column justify-content-between align-items-end h-100'>
                 <div className="buttons-container d-flex justify-content-center align-items-center flex-wrap">
                     <button onClick={() => {setModalType('produto'); setShow(true)}}>Adicionar produto</button>
-                    <button onClick={() => {setModalType('categoria'); setShow(true)}}>Adicionar categoria</button>
+                    <button onClick={() => {setModalType('see-categoria'); setShow(true)}}>Gerenciar categorias</button>
                 </div>
                 <div className="card-container col-8 h-100">
                     {!loading && productCardExhibition && <ProductCard
@@ -138,13 +147,14 @@ const AdminMenu = () => {
         <Modal show={show} onHide={handleClose} backdrop="static" centered>
           <Modal.Header closeButton>
             <Modal.Title>
-                  {modalType === 'categoria' && <>Criar categoria</>}
                   {modalType === 'produto' && <>Criar produto</>}
+                  {modalType === 'see-categoria' && <>Gerenciar categorias</>}
+                  {modalType === 'add-categoria' && <>Criar categoria</>}
             </Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
-                {modalType === 'categoria' && <div className='d-flex'>
+                {modalType === 'add-categoria' && <div className='d-flex'>
                     <InputText name='name' value={name} setAttr={setName} condition={(name) => name.length > 0}><p className='text-black mb-1'>Nome da categoria:</p></InputText>
                 </div>}
 
@@ -162,15 +172,17 @@ const AdminMenu = () => {
                       <input type="radio" value={category.id} name='category' id="category.name" /> {category.name}
                     </div>)}
                     </div>
-
-
-
                 </div>)}
+                
+                {modalType === 'see-categoria' && 
+                        (<div className='d-flex flex-column'>
+                            {categories && categories.map((category) => <CategoryCard key={category.id} category={category} categories={categories}/>)}
+                        </div>)}
           </Modal.Body>
 
           <Modal.Footer>
             {modalType === 'produto' && <button className='editar' disabled={loading ? true:false} onClick={addProduct}>Criar produto</button>}
-            {modalType === 'categoria' && <button className='editar' disabled={loading ? true:false} onClick={addCategory}>Criar categoria</button>}
+            {modalType === 'add-categoria' && <button className='editar' disabled={loading ? true:false} onClick={addCategory}>Criar categoria</button>}
 
             <button className='close' onClick={handleClose}>Fechar</button>
           </Modal.Footer>

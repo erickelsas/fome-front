@@ -110,6 +110,31 @@ body{
     margin: 0;
 }
 
+.admin-revenue .loading-word{
+    color: #164C03;
+}
+
+.admin-revenue .loading-word:after{
+    content: '';
+    animation: 2s linear 0s infinite dots;
+}
+
+@keyframes dots{
+    0%{
+        content: '';
+    } 16.66%{
+        content: '.';
+    } 33.32%{
+        content: '..';
+    } 49.98%{
+        content: '...';
+    } 66.64%{
+        content: '..';
+    } 83.3%{
+        content: '.';
+    }
+}
+
 @media (min-width: 576px) {
 
 }
