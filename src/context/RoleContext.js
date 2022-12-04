@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useFetchCRUD } from "../hooks/useFetchCRUD";
 import { RoutesContext } from "./RoutesContext";
 
 export const RoleContext = createContext();

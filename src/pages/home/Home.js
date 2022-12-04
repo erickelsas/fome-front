@@ -22,7 +22,7 @@ import { RoutesContext } from '../../context/RoutesContext';
 
 const Home = () => {
   const { urls } = useContext(RoutesContext);
-  const { data: products, loading, error, httpConfig } = useFetchCRUD(urls.product);
+  const { data: products, loading, error } = useFetchCRUD(urls.product);
   const [ filter, setFilter ] = useState('todos');
   const [ openCar, setOpenCar ] = useState(false);
   const { order, total, setOrder, setTotal } = useContext(OrderContext);
@@ -60,8 +60,6 @@ const Home = () => {
        setId(json.id);
 
        const newIdProductOrder = arrayPedidos();
-
-       console.log(newIdProductOrder);
 
       const makeOrderObj = {
         id: null,
@@ -101,9 +99,9 @@ const Home = () => {
             <div className="car-container d-flex flex-column justify-content-start align-items-center">
               <div className='itens'>
                 {order && order.map((product) => (
-                  <CarCard key={product.num}
+                  <CarCard key={product.id}
                            id={product.id}
-                           photo={product.photo} 
+                           photo={product.image} 
                            name={product.name} 
                            price={product.price} 
                            description={product.description}
@@ -138,7 +136,7 @@ const Home = () => {
                 <Col key={product.id} className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
                             <ProductCard key={product.id}
                                          id = {product.id}
-                                         photo={product.photo}
+                                         photo={product.image}
                                          name={product.name}
                                          price={product.price}
                                          description={product.description}
@@ -150,7 +148,7 @@ const Home = () => {
               <Col key={product.id} className='col-xl-3 col-lg-4 col-md-6 col-10 offset-1 offset-md-0 mb-3'>
                          <ProductCard key={product.id}
                                       id = {product.id}
-                                      photo={product.photo}
+                                      photo={product.image}
                                       name={product.name}
                                       price={product.price}
                                       description={product.description}

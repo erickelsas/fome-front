@@ -1,14 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBarHome from '../../components/NavBarHome';
 import bgLogin  from '../../assets/bg-login.png';
 import InputText from '../../components/InputText';
 import { Eye, EyeSlash} from 'react-bootstrap-icons';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
-import { RoleContext } from '../../context/RoleContext';
 
 import './Login.css'
-import { RoutesContext } from '../../context/RoutesContext';
 import { useLogin } from '../../hooks/useLogin';
 
 
@@ -20,9 +18,6 @@ const Login = () => {
   const [ showModal, setShowModal ] = useState(false);
   const [ name, setName ] = useState('');
   const [ cpf, setCpf] = useState('');
-
-  const { token } = useContext(RoleContext);
-  const { urls } = useContext(RoutesContext);
 
   const { httpConfig, loading, error } = useLogin();
   const navigate = useNavigate();

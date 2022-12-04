@@ -53,8 +53,6 @@ export const useLogin = () => {
 
                     localStorage.setItem('token', JSON.stringify(token));
 
-                    console.log(JSON.stringify(token));
-
                     res = await fetch(`${urls.user}get-role`, { headers:{'Authorization':`Bearer ${token}`,}});
 
                     json = await res.json();

@@ -1,14 +1,22 @@
 .car-card img{
-    transform: scale(0.15);
     border-radius: 16px 0px 0px 16px;
     max-height: 18vh;
 }
 
 .car-card .img-bg{
     background-color: #D9D9D9;
-    max-height: 18vh;
-    height: 100%;
+    height: 14vh;
     border-radius: 16px 0px 0px 16px;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-card .img-bg img{
+    height: 100%;
+    width: auto;
 }
 
 .car-card{

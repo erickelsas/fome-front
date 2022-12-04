@@ -1,6 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { RoleContext } from "../context/RoleContext";
-import { RoutesContext } from "../context/RoutesContext";
+import { useEffect, useState } from "react";
 
 export const useFetchCRUD = (url, bearerToken) => {
   const [data, setData] = useState([]);
@@ -139,7 +137,6 @@ export const useFetchCRUD = (url, bearerToken) => {
 
         setCallFetch(json);
       } else if(method === "PUT"){
-        console.log('1');
         const putUrl = `${url}update/`;
 
         const res = await fetch(putUrl, config);
@@ -153,8 +150,6 @@ export const useFetchCRUD = (url, bearerToken) => {
         const res = await fetch(createUrl, config);
 
         const json = await res.json();
-
-        console.log(json);
 
         setCallFetch(json);
       } else if(method === "FIND-BY-ID"){

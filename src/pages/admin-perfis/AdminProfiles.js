@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import './AdminProfiles.css';
 
@@ -16,7 +16,7 @@ const AdminProfiles = () => {
     const [page, setPage] = useState(1);
     const { urls } = useContext(RoutesContext);
     const { token } = useContext(RoleContext);
-    const { data: users, loading, error, httpConfig} = useFetchCRUD(urls.user, token);
+    const { data: users, loading, httpConfig} = useFetchCRUD(urls.user, token);
     
     const [show, setShow] = useState(false);
     

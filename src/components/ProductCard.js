@@ -13,7 +13,7 @@ const ProductCard = ({id, photo, name, price, description, ingredients}) => {
             newOrder[orderIndex].qtd++;
             setOrder(newOrder);
         } else {
-            setOrder(prevOrder => [...prevOrder, { id, photo, name, price, description, ingredients, qtd: 1}]);
+            setOrder(prevOrder => [...prevOrder, { id, image: photo, name, price, description, ingredients, qtd: 1}]);
         }
         setTotal(total + price);
     }
@@ -23,7 +23,7 @@ const ProductCard = ({id, photo, name, price, description, ingredients}) => {
         <div className='d-flex justify-content-center align-items-center card-top'>
             <img src={photo} alt={`Imagem ilustrativa de ${name}`} />
         </div>
-        <div className='card-data d-flex flex-column justify-content-between h-100'>
+        <div className='card-data d-flex flex-column justify-content-between h-75'>
             <div className='card-title d-flex justify-content-between align-items-start'>
                 <h2>{name}</h2>
                 <h2>R${price}</h2>

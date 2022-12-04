@@ -12,12 +12,11 @@ import { RoutesContext } from '../../context/RoutesContext';
 import { RoleContext } from '../../context/RoleContext';
 import { Plus } from 'react-bootstrap-icons';
 import Modal from 'react-bootstrap/Modal';
-import InputText from '../../components/InputText';
 
 const AdminTable = () => {
     const { urls } = useContext(RoutesContext);
     const { token } = useContext(RoleContext);
-    const { data: users, loading, error, httpConfig } = useFetchCRUD(urls.user, token);
+    const { data: users, loading, httpConfig } = useFetchCRUD(urls.user, token);
 
     const [tables, setTables] = useState([]);
     const [show, setShow] = useState(false)

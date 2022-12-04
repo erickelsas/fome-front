@@ -1,12 +1,21 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { RoutesContext } from '../context/RoutesContext'
 import { useFetchCRUD } from '../hooks/useFetchCRUD';
 
 import './Filter.css'
 
-const Filter = ({filter, setFilter}) => {
+const Filter = ({filter, setFilter, categories:categoriesProp}) => {
   const { urls } = useContext(RoutesContext);
-  const { data:categories } = useFetchCRUD(urls.category);
+  const { data:categoriesImport } = useFetchCRUD(urls.category);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    if(categoriesProp){
+      setCategories([...categoriesProp]);
+    } else {
+      setCategories([...categoriesImport]);
+    }
+  }, [categoriesImport, categoriesProp])
 
   categories.sort((a,b) => {return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : a.name.toLowerCase() > b.name.toLowerCase() ? 1 : 0});
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import './Waiter.css';
 
@@ -14,7 +14,7 @@ import { RoleContext } from '../../context/RoleContext';
 const Waiter = () => {
     const { token } = useContext(RoleContext);
     const { urls } = useContext(RoutesContext);
-    const { data: users, loading, error } = useFetchCRUD(urls.users, token);
+    const { data: users } = useFetchCRUD(urls.user, token);
 
     const tables = users.filter(user => user.userRole === 'TABLE_ROLE');
 

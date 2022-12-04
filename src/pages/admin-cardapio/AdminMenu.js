@@ -93,8 +93,6 @@ const AdminMenu = () => {
         handleClose();
     }
 
-    console.log(categories);
-
   return (
     <div className='admin-menu'>
         <SideMenu page='cardapio'/>
@@ -104,7 +102,7 @@ const AdminMenu = () => {
                     <h1>Produtos</h1>
                 </div>
                 <div className="filter">
-                    <Filter filter={filter} setFilter={setFilter}/>
+                    <Filter filter={filter} setFilter={setFilter} categories={categories}/>
                 </div>
                 <div className="menu-container">
                     {!loading && products && products.map((product) => <MenuContent 
@@ -129,7 +127,7 @@ const AdminMenu = () => {
                 <div className="card-container col-8 h-100">
                     {!loading && productCardExhibition && <ProductCard
                         id={productCardExhibition.id} 
-                        photo={productCardExhibition.photo} 
+                        photo={productCardExhibition.image} 
                         name={productCardExhibition.name} 
                         price={productCardExhibition.price} 
                         description={productCardExhibition.description}
@@ -181,6 +179,7 @@ const AdminMenu = () => {
 
           <Modal.Footer>
             {modalType === 'produto' && <button className='editar' disabled={loading ? true:false} onClick={addProduct}>Criar produto</button>}
+            {modalType === 'see-categoria' && <button className='apagar' onClick={() => setModalType('add-categoria')}>Adicionar categoria</button>}
             {modalType === 'add-categoria' && <button className='editar' disabled={loading ? true:false} onClick={addCategory}>Criar categoria</button>}
 
             <button className='close' onClick={handleClose}>Fechar</button>

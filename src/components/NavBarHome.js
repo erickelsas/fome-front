@@ -16,7 +16,7 @@ import { useLogin } from '../hooks/useLogin';
 
 
 const NavBarHome = ({ children }) => {
-  const { role, setRole } = useContext(RoleContext);
+  const { role } = useContext(RoleContext);
   const [hamburguer, setHamburguer] = useState(false);
   const { logout } = useLogin();
 

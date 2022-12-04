@@ -12,11 +12,16 @@ const AdminRevenue = () => {
     const [mostSoldOrders, setMostSoldOrders] = useState([]);
 
     const date = new Date();
-    const today = date.getDate();
+    let today = date.getDate();
+
+    if(today < 10){
+        today = `0${today}`
+    }
+
     const currentMonth = date.getMonth() + 1;
     const currentYear = date.getFullYear();
     
-    const finalDate = `${currentYear}-${currentMonth}-${today}`;
+    const finalDate = `${currentYear}-${currentMonth}-${today}T23:59:00.000Z`;
 
     const [value, setValue] = useState(0);
 
@@ -31,36 +36,45 @@ const AdminRevenue = () => {
             setMostSoldOrders(json);
         }
         fetchMostSoldOrders();
-    }, [])
+    }, [token, urls.table])
 
     useEffect(() => {
         const fetchValue = async () => {
-            const filterDate = () => {
-                setLoading(true);
+            setLoading(true);
+            try{
+                const filterDate = () => {
+                    if(filter === 'mês'){
+                        if(currentMonth === 1){
+                            return `${currentYear}-${currentMonth}-01T00:00:00.000Z`
+                        }
+                        return `${currentYear}-${currentMonth-1}-${today}T00:00:00.000Z`
+                    }
+        
+                    if(filter === 'dia'){
+                        return `${currentYear}-${currentMonth}-${today}T00:00:00.000Z`
+                    }
+                
+                    if(filter === 'ano'){
+                        return `${currentYear}-01-01T00:00:00.000Z`
+                    }
+                }
 
-                if(filter === 'mês'){
-                    return `${currentYear}-${currentMonth-1}-${today}`
+                const objDate = {
+                    sucess: "true",
+                    iniDate: filterDate(),
+                    finalDate,
                 }
-    
-                if(filter === 'semestre'){
-                    return `${currentYear}-${currentMonth-6}-${today}`
-                }
-            
-                if(filter === 'ano'){
-                    return `${currentYear-1}-${currentMonth-1}-${today}`
-                }
+
+                const res = await fetch(`${urls.table}balance-sheet`, {method: "POST", headers:{"Content-Type":"application/json", "Authorization": `Bearer ${token}`}, body: JSON.stringify(objDate)});
+
+                const json = await res.json();
+
+                setValue(json.result);
+
+            } catch(error){
+                console.log(error.message);
             }
-     
-            const objDate = {
-                iniDate: filterDate(),
-                finalDate,
-            }
-
-            const res = await fetch(`${urls.table}balance-sheet`, {method: "POST", headers:{"Content-Type":"application/json", "Authorization": `Bearer ${token}`}, body: JSON.stringify(objDate)});
-            const json = await res.json();
-
-            setValue(json.result);
-
+                
             setLoading(false);
         }
 
@@ -77,20 +91,20 @@ const AdminRevenue = () => {
                     <h2 className='text-center'>Receita do último</h2>
                     <div className="filtro">
                         <button 
+                            className={filter === 'dia' ? "filter-option active" : "filter-option"} 
+                            onClick={() => {setFilter('dia');}}>
+                                dia</button>
+                        <button 
                             className={filter === 'mês' ? "filter-option active" : "filter-option"} 
                             onClick={() => {setFilter('mês');}}>
                                 mês</button>
-                        <button 
-                            className={filter === 'semestre' ? "filter-option active" : "filter-option"} 
-                            onClick={() => {setFilter('semestre');}}>
-                                semestre</button>
                         <button 
                             className={filter === 'ano' ? "filter-option active" : "filter-option"} 
                             onClick={() => {setFilter('ano');}}>
                                 ano</button>
                     </div>
                     {loading && <h3 className='mb-0 loading-word'>Carregando</h3>}
-                    {!loading && <h2 className='display-3 valor'>R${value},00</h2>}
+                    {!loading && <h2 className='display-3 valor'>R${value}</h2>}
                 </div>
                 <div className='grafico'>
 
@@ -100,7 +114,7 @@ const AdminRevenue = () => {
                 <h1>Mais vendidos</h1>
                 <div className="mais-vendidos-container">
                     
-                    {mostSoldOrders !== [] && mostSoldOrders.map((order) => (                    <div className="card-mais-vendido">
+                    {mostSoldOrders && mostSoldOrders.map((order) => (                    <div key={order.product.id} className="card-mais-vendido">
                         <div className='titulo'>
                             <h3>{order.product.name}</h3>
                         </div>

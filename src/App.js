@@ -7,7 +7,6 @@ import { RoleContext } from './context/RoleContext';
 
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
-import Privacy from './pages/privacy/Privacy';
 import Admin from './pages/admin/Admin';
 import Kitchen from './pages/kitchen/Kitchen';
 import Waiter from './pages/waiter/Waiter';
