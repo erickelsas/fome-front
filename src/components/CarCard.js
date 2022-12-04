@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import './CarCard.css';
 
 import { OrderContext } from '../context/OrderContext';
@@ -34,7 +34,7 @@ const CarCard = ({id, photo, name, price, description, qtd }) => {
   return (
     <div className='d-flex justify-content-between align-items-center car-card'>
         <div className='img-bg col-3 d-flex justify-content-center align-items-center p-3'>
-            <img src={photo} alt="" />
+            <img src={photo} alt={`Imagem ilustrativa de ${name}`} />
         </div>
         <div className='d-flex flex-column justify-content-center col-7 p-3'>
             <div className='d-flex justify-content-between align-items-center'>
