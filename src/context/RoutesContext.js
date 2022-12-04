@@ -3,10 +3,10 @@ import { createContext } from "react";
 export const RoutesContext = createContext();
 
 export const RoutesContextProvider = ({children}) => {
-    const urlGeral = 'http://fomev10-env.eba-sq3qqxd7.sa-east-1.elasticbeanstalk.com';
+    const urlGeral = 'https://whispering-brook-75313.herokuapp.com/http://fomev10-env.eba-sq3qqxd7.sa-east-1.elasticbeanstalk.com';
 
     const urls = {
-        geral: 'http://fomev10-env.eba-sq3qqxd7.sa-east-1.elasticbeanstalk.com',
+        geral: 'https://whispering-brook-75313.herokuapp.com/http://fomev10-env.eba-sq3qqxd7.sa-east-1.elasticbeanstalk.com',
         product: `${urlGeral}/product/`,
         user: `${urlGeral}/user/`,
         order: `${urlGeral}/order/`,
