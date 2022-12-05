@@ -53,7 +53,7 @@ const Home = () => {
 
   const realizarPedido = async () => {
     setLoadingEfetuar(true);
-    if(role !== 'visitant'){
+    if(role !== 'VISITOR'){
        let res = await fetch(`${urls.user}find-id/${username}`);
        let json = await res.json();
 

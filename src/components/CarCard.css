@@ -1,11 +1,11 @@
 .car-card img{
     border-radius: 16px 0px 0px 16px;
-    max-height: 18vh;
+    height: 15vh;
 }
 
 .car-card .img-bg{
     background-color: #D9D9D9;
-    height: 14vh;
+    height: 15vh;
     border-radius: 16px 0px 0px 16px;
     overflow: hidden;
 
@@ -14,14 +14,9 @@
     align-items: center;
 }
 
-.card-card .img-bg img{
-    height: 100%;
-    width: auto;
-}
-
 .car-card{
     width: 100%;
-    max-height: 18vh;
+    height: auto;
     margin: auto;
     background-color: #f2f3f4;
     border-radius: 16px;

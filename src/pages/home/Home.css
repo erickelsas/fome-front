@@ -37,8 +37,8 @@
 
 
 div.itens{
-    height: 60vh;
     width: 95%;
+    height: auto;
     overflow-y: scroll;
 }
 
