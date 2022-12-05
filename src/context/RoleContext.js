@@ -9,8 +9,6 @@ export const RoleContextProvider = ({children}) => {
     const [role, setRole] = useState('VISITOR');
     const [username, setUsername] = useState(localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : '');
 
-    console.log(username)
-
     const { urls } = useContext(RoutesContext);
 
     useEffect(() => {
