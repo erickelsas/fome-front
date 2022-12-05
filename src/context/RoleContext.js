@@ -4,10 +4,12 @@ import { RoutesContext } from "./RoutesContext";
 export const RoleContext = createContext();
 
 export const RoleContextProvider = ({children}) => {
-    const [loading, setLoading] = useState('VISITOR');
+    const [loading, setLoading] = useState(false);
     const [token, setToken] = useState(localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : '');
-    const [role, setRole] = useState(null);
+    const [role, setRole] = useState('VISITOR');
     const [username, setUsername] = useState(localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : '');
+
+    console.log(username)
 
     const { urls } = useContext(RoutesContext);
 
@@ -40,7 +42,7 @@ export const RoleContextProvider = ({children}) => {
 
 
     return(
-        <RoleContext.Provider value={{role, setRole, token, setToken, loading, username}}>
+        <RoleContext.Provider value={{role, setRole, token, setToken, loading, username, setUsername}}>
             {children}
         </RoleContext.Provider>
     )

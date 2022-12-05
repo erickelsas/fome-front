@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import NavBarHome from '../../components/NavBarHome';
 import bgLogin  from '../../assets/bg-login.png';
 import InputText from '../../components/InputText';
@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 import './Login.css'
 import { useLogin } from '../../hooks/useLogin';
+import { RoleContext } from '../../context/RoleContext';
 
 
 
@@ -18,6 +19,8 @@ const Login = () => {
   const [ showModal, setShowModal ] = useState(false);
   const [ name, setName ] = useState('');
   const [ cpf, setCpf] = useState('');
+
+  const { setUsername } = useContext(RoleContext);
 
   const { httpConfig, loading, error } = useLogin();
   const navigate = useNavigate();
@@ -64,7 +67,9 @@ const Login = () => {
 
       localStorage.removeItem('cpf');
       localStorage.removeItem('name');
-      localStorage.removeItem('user');
+      localStorage.setItem('user', JSON.stringify(user));
+
+      setUsername(user);
 
       setUser('');
       setPassword('');
@@ -96,6 +101,8 @@ const Login = () => {
       localStorage.setItem('name', JSON.stringify(name));
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.removeItem('token');
+
+      setUsername(user);
     
       setUser('');
       setPassword('');

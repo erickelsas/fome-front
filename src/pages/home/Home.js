@@ -30,8 +30,6 @@ const Home = () => {
 
   const [ loadingEfetuar, setLoadingEfetuar ] = useState(false);
 
-  const [id, setId] = useState(0);
-
   const handleOpenCar = () => {
     if(openCar === true) {
       setOpenCar(false);
@@ -57,8 +55,7 @@ const Home = () => {
        let res = await fetch(`${urls.user}find-id/${username}`);
        let json = await res.json();
 
-
-       const newIdProductOrder = arrayPedidos();
+      const newIdProductOrder = arrayPedidos();
 
       const makeOrderObj = {
         id: null,
