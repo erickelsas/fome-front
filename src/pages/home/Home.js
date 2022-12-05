@@ -57,7 +57,6 @@ const Home = () => {
        let res = await fetch(`${urls.user}find-id/${username}`);
        let json = await res.json();
 
-       setId(json.id);
 
        const newIdProductOrder = arrayPedidos();
 
@@ -68,9 +67,11 @@ const Home = () => {
         EPaymentMethod: null,
         newIdProductOrder,
         table_id: {
-          id,
+          id: json.id,
         }
       };
+
+      console.log(makeOrderObj);
 
       res = await fetch(`${urls.table}make-order/`, {method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(makeOrderObj)});
 
