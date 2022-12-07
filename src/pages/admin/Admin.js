@@ -24,12 +24,12 @@ const Admin = () => {
     if(ordersFetch){
       setOrders(ordersFetch);
     }
-  }, [ordersFetch])
+  }, [ordersFetch]);
   
   const [ordersNotSlider, setOrdersNotSlider] = useState(orders.slice(0, 7));
 
   useEffect(() => {
-    setOrdersNotSlider(orders.slice(0, 7));
+    setOrdersNotSlider(orders.slice(0,7));
   }, [orders]);
 
   const atualizarPedidos = async () => {

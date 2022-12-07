@@ -115,6 +115,25 @@
     border: 3px solid #466d1d;
 }
 
+.error-container{
+    margin-top: 1rem;
+    color: #E32929;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #f5b4b4;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+}
+
+.error-container p{
+    margin: 0;
+}
+
 
 @media (min-width: 576px) {
 }

@@ -19,16 +19,24 @@ import CarCard from '../../components/CarCard';
 import { OrderContext } from '../../context/OrderContext';
 import { RoleContext } from '../../context/RoleContext';
 import { RoutesContext } from '../../context/RoutesContext';
+import Modal from 'react-bootstrap/Modal'
 
 const Home = () => {
   const { urls } = useContext(RoutesContext);
-  const { data: products, loading, error } = useFetchCRUD(urls.product);
+  const { data: products, loading } = useFetchCRUD(urls.product);
   const [ filter, setFilter ] = useState('todos');
   const [ openCar, setOpenCar ] = useState(false);
   const { order, total, setOrder, setTotal } = useContext(OrderContext);
   const { role, username } = useContext(RoleContext);
 
   const [ loadingEfetuar, setLoadingEfetuar ] = useState(false);
+
+  const [show, setShow] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleClose = () => {
+    setShow(false);
+  }
 
   const handleOpenCar = () => {
     if(openCar === true) {
@@ -51,29 +59,34 @@ const Home = () => {
 
   const realizarPedido = async () => {
     setLoadingEfetuar(true);
-    if(role !== 'VISITOR'){
-       let res = await fetch(`${urls.user}find-id/${username}`);
-       let json = await res.json();
-
-      const newIdProductOrder = arrayPedidos();
-
-      const makeOrderObj = {
-        id: null,
-        totalValue: total,
-        cpfCliente: JSON.parse(localStorage.getItem('cpf')),
-        EPaymentMethod: null,
-        newIdProductOrder,
-        table_id: {
-          id: json.id,
-        }
-      };
-
-      res = await fetch(`${urls.table}make-order/`, {method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(makeOrderObj)});
-
-      setOrder([]);
-      setTotal(0);
-    } else {
-        alert('Você precisa estar logado!');
+    try{
+      if(role !== 'VISITOR'){
+        let res = await fetch(`${urls.user}find-id/${username}`);
+        let json = await res.json();
+ 
+       const newIdProductOrder = arrayPedidos();
+ 
+       const makeOrderObj = {
+         id: null,
+         totalValue: total,
+         cpfCliente: JSON.parse(localStorage.getItem('cpf')),
+         EPaymentMethod: null,
+         newIdProductOrder,
+         table_id: {
+           id: json.id,
+         }
+       };
+ 
+       await fetch(`${urls.table}make-order/`, {method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(makeOrderObj)});
+ 
+       setShow(true);
+       setOrder([]);
+       setTotal(0);
+     } else {
+         alert('Você precisa estar logado!');
+     }
+    } catch(error){
+      setError(error.message);
     }
     setLoadingEfetuar(false);
 }
@@ -157,6 +170,18 @@ const Home = () => {
             </Row>
         </Container>
         <FooterHome />
+
+        <Modal show={show} onHide={handleClose} backdrop="static" centered>
+          <Modal.Header closeButton>
+            <Modal.Title>
+              {!error && <>Pedido realizado com sucesso!</>}
+              {error && <>Houve um error durante a realização do pedido, tente novamente!</>}
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Footer>
+            <button className='close' onClick={handleClose}>Fechar</button>
+          </Modal.Footer>
+        </Modal>
     </div>
   )
 }

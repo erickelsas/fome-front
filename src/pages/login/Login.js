@@ -71,8 +71,10 @@ const Login = () => {
 
       setUsername(user);
 
-      setUser('');
-      setPassword('');
+      if(!error){
+        setUser('');
+        setPassword('');
+      }
     }
   }
 
@@ -103,11 +105,14 @@ const Login = () => {
       localStorage.removeItem('token');
 
       setUsername(user);
+      setShowModal(false)
     
-      setUser('');
-      setPassword('');
-      setName('');
-      setCpf('');
+      if(!error){
+        setUser('');
+        setPassword('');
+        setName('');
+        setCpf('');
+      }
     }
   }
 
@@ -147,8 +152,15 @@ const Login = () => {
                     </div>
 
                   </div>
-                  <input type="submit" value="Entrar" />
+                  <input type="submit" value="Entrar"/>
+
+                  {error && 
+                  (<div className='error-container'>
+                    <p>Houve um erro, tente novamente!</p>
+                  </div>)}
+
                 </form>
+
 
                 <Modal show={showModal} onHide={() => setShowModal(false)} centered>
                   <div className='modal-container'>
